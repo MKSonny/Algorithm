@@ -1,0 +1,15 @@
+ch = [0] * 4
+n = 3
+def dfs(v):
+    if v == n+1:
+        for i in range(1, n + 1):
+            if ch[i] == 1:
+                print(i, end = ' ')
+        print()
+    else:
+        ch[v] = 1
+        dfs(v + 1)
+        ch[v] = 0
+        dfs(v + 1)
+
+dfs(1)
