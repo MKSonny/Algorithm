@@ -13,15 +13,20 @@ def binary_search(A, key, low, high):
         return binary_search(A, key, mid + 1, high)
 
 res = [a[0]]
-save_idx = []
+save_idx = [-1]
 
 for i in range(1, len(a)):
     if res[-1] < a[i]:
         res.append(a[i])
+        save_idx.append(i)
     else:
         # print(res)
         idx = binary_search(res, a[i], 0, len(res) - 1)
-        save_idx.append(idx)
-        res[binary_search(res, a[i], 0, len(res) - 1)] = a[i]
+        if len(res) > 1 and idx != len(res) - 1:
+            if save_idx[idx + 1] < i:
+                continue
+        save_idx[idx] = i
+        res[idx] = a[i]
 print(len(res))
-print(save_idx)
+print(res)
+# print(save_idx)
