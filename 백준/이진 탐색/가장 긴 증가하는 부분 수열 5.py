@@ -1,6 +1,5 @@
-n = input()
+n = int(input())
 a = list(map(int, input().split()))
-# 문제에서
 def binary_search(A, key, low, high):
     if low > high:
         return low
@@ -20,13 +19,12 @@ for i in range(1, len(a)):
         res.append(a[i])
         save_idx.append(i)
     else:
-        # print(res)
         idx = binary_search(res, a[i], 0, len(res) - 1)
         if len(res) > 1 and idx != len(res) - 1:
             if save_idx[idx + 1] < i:
                 continue
+        print(idx)
         save_idx[idx] = i
         res[idx] = a[i]
 print(len(res))
-print(res)
-# print(save_idx)
+print(*res[::])
