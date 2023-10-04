@@ -1,3 +1,6 @@
+import sys
+
+sys.setrecursionlimit(10000)
 n = int(input())
 a = list(map(int, input().split()))
 def binary_search(A, key, low, high):

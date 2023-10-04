@@ -1,3 +1,6 @@
+import sys
+
+sys.setrecursionlimit(10000)
 n = input()
 a = list(map(int, input().split()))
 # 문제에서
