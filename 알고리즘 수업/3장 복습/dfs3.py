@@ -1,3 +1,5 @@
+import queue
+
 mygraph = {
     "A": {"B", "C"},
     "B": {"A", "D"},
@@ -17,4 +19,20 @@ def dfs(graph, start, visited):
         for v in nbr:
             dfs(graph, v, visited)
 
+q = queue.Queue()
+
+def bfs(graph, start):
+    visited = { start }
+    q.put(start)
+
+    while not q.empty():
+        v = q.get()
+        nbr = graph[v] - visited
+        print(v, end=' ')
+        for u in nbr:
+            q.put(u)
+            visited.add(u)
+
 dfs(mygraph, 'A', set())
+print()
+bfs(mygraph, 'A')
