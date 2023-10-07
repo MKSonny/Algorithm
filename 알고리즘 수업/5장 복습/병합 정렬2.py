@@ -2,6 +2,7 @@ def merge(a, left, mid, right):
     k = left
     i = left
     j = mid + 1
+    # 10/7 아래 문제 해결 못함
     d = [0] * len(a)
     while i <= mid and j <= right:
         if a[i] <= a[j]:
