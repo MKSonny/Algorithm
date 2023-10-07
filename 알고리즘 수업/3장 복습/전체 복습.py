@@ -90,6 +90,7 @@ def quick_select(a, left, right, k):
     elif pos + 1 > left + k:
         return quick_select(a, left, pos - 1, k)
     else:
+        # 강의 자료는 k - (pos + 1 - left) 라고 되어있다. 하지만 이해가 어려워 다음과 같이 수정.
         return quick_select(a, pos + 1, right, left - (pos + 1) + k)
 
 
