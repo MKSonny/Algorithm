@@ -23,10 +23,43 @@ def string_match(p, t):
                 return i
     return -1
 
-data = [4, 2, 1, 6, 7, 3]
-print(data)
-selection_sort(data)
-print(data)
+# 위상 정렬
+mygraph = {
+    'A' : {'C', 'D'},
+    'B' : {'D', 'E'},
+    'C' : {'D', 'F'},
+    'D' : {'F'},
+    'E' : {'F'},
+    'F' : {}
+}
 
-idx = string_match(str, 'O')
-print(idx)
+my_dict = {}
+
+for key in mygraph:
+    my_dict[key] = 0
+
+for key in mygraph:
+    for value in mygraph[key]:
+        my_dict[value] += 1
+
+v_list = []
+
+for key in my_dict:
+    if my_dict[key] == 0:
+        v_list.append(key)
+
+while v_list:
+    v = v_list.pop()
+    print(v, end=' ')
+    for key in mygraph[v]:
+        my_dict[key] -= 1
+        if my_dict[key] == 0:
+            v_list.append(key)
+
+# data = [4, 2, 1, 6, 7, 3]
+# print(data)
+# selection_sort(data)
+# print(data)
+#
+# idx = string_match(str, 'O')
+# print(idx)
