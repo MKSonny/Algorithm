@@ -31,5 +31,5 @@ def dfs(graph, start, visited):
         for v in nbr:
             dfs(graph, v, visited)
 
-# dfs(mygraph, "A", set())
-bfs(mygraph, "A")
+dfs(mygraph, "A", set())
+# bfs(mygraph, "A")
