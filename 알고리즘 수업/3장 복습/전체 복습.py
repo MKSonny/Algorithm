@@ -24,37 +24,53 @@ def string_match(p, t):
     return -1
 
 # 위상 정렬
-mygraph = {
-    'A' : {'C', 'D'},
-    'B' : {'D', 'E'},
-    'C' : {'D', 'F'},
-    'D' : {'F'},
-    'E' : {'F'},
-    'F' : {}
-}
+# mygraph = {
+#     'A' : {'C', 'D'},
+#     'B' : {'D', 'E'},
+#     'C' : {'D', 'F'},
+#     'D' : {'F'},
+#     'E' : {'F'},
+#     'F' : {}
+# }
+#
+# my_dict = {}
+#
+# for key in mygraph:
+#     my_dict[key] = 0
+#
+# for key in mygraph:
+#     for value in mygraph[key]:
+#         my_dict[value] += 1
+#
+# v_list = []
+#
+# for key in my_dict:
+#     if my_dict[key] == 0:
+#         v_list.append(key)
+#
+# while v_list:
+#     v = v_list.pop()
+#     print(v, end=' ')
+#     for key in mygraph[v]:
+#         my_dict[key] -= 1
+#         if my_dict[key] == 0:
+#             v_list.append(key)
 
-my_dict = {}
+# 이진 탐색
+def binary_search(a, left, right, key):
+    if left <= right:
+        mid = (left + right) // 2
+        if a[mid] == key:
+            return mid
+        elif a[mid] > key:
+            return binary_search(a, left, mid - 1, key)
+        else:
+            return binary_search(a, mid + 1, right, key)
 
-for key in mygraph:
-    my_dict[key] = 0
 
-for key in mygraph:
-    for value in mygraph[key]:
-        my_dict[value] += 1
-
-v_list = []
-
-for key in my_dict:
-    if my_dict[key] == 0:
-        v_list.append(key)
-
-while v_list:
-    v = v_list.pop()
-    print(v, end=' ')
-    for key in mygraph[v]:
-        my_dict[key] -= 1
-        if my_dict[key] == 0:
-            v_list.append(key)
+data = [1, 2, 3, 4, 5, 6]
+idx = binary_search(data, 0, len(data) - 1, 2)
+print(idx)
 
 # data = [4, 2, 1, 6, 7, 3]
 # print(data)
