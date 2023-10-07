@@ -73,7 +73,7 @@ def partition(a, left, right):
     low = left + 1
     high = right
     while low <= high:
-        while low <= right and a[low] < pivot:
+        while low <= right and a[low] <= pivot:
             low += 1
         while high >= left and a[high] > pivot:
             high -= 1
@@ -82,21 +82,19 @@ def partition(a, left, right):
     if low > high:
         a[left], a[high] = a[high], a[left]
     return high
-def find(a, left, right, k):
-    pivot = partition(a, left, right)
-    print('left:', left)
-    print('k:', k)
-    print('left + k =', left + k)
-    if pivot + 1 == left + k:
-        return a[pivot]
-    elif pivot + 1 > left + k:
-        return find(a, left, pivot - 1, k)
+
+def quick_select(a, left, right, k):
+    pos = partition(a, left, right)
+    if pos + 1 == left + k:
+        return a[pos]
+    elif pos + 1 > left + k:
+        return quick_select(a, left, pos - 1, k)
     else:
-        return find(a, pivot + 1, right, k - (pivot + 1 - left))
+        return quick_select(a, pos + 1, right, left - (pos + 1) + k)
 
 
-data = [1, 2, 3, 4, 5, 6]
-num = find(data, 0, len(data) - 1, 6)
+data = [2, 2, 3, 4, 5, 6]
+num = quick_select(data, 0, len(data) - 1, 2)
 print(num)
 # idx = binary_search(data, 0, len(data) - 1, 2)
 # print(idx)
