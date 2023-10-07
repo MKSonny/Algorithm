@@ -67,10 +67,39 @@ def binary_search(a, left, right, key):
         else:
             return binary_search(a, mid + 1, right, key)
 
+# k번째 작은 수 찾기
+def partition(a, left, right):
+    pivot = a[left]
+    low = left + 1
+    high = right
+    while low <= high:
+        while low <= right and a[low] < pivot:
+            low += 1
+        while high >= left and a[high] > pivot:
+            high -= 1
+        if low < high:
+            a[low], a[high] = a[high], a[low]
+    if low > high:
+        a[left], a[high] = a[high], a[left]
+    return high
+def find(a, left, right, k):
+    pivot = partition(a, left, right)
+    print('left:', left)
+    print('k:', k)
+    print('left + k =', left + k)
+    if pivot + 1 == left + k:
+        return a[pivot]
+    elif pivot + 1 > left + k:
+        return find(a, left, pivot - 1, k)
+    else:
+        return find(a, pivot + 1, right, k - (pivot + 1 - left))
+
 
 data = [1, 2, 3, 4, 5, 6]
-idx = binary_search(data, 0, len(data) - 1, 2)
-print(idx)
+num = find(data, 0, len(data) - 1, 6)
+print(num)
+# idx = binary_search(data, 0, len(data) - 1, 2)
+# print(idx)
 
 # data = [4, 2, 1, 6, 7, 3]
 # print(data)
