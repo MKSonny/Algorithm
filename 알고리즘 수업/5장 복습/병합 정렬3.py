@@ -1,8 +1,13 @@
+cnt = 0
 def merge(a, left, mid, right):
     i = left
     j = mid + 1
     k = left
+    global cnt
+    cnt += 1
     sorted = [0] * len(a)
+    # print(cnt)
+    # print('before sorted: ', a)
     while i <= mid and j <= right:
         if a[i] <= a[j]:
             sorted[k] = a[i]
@@ -20,13 +25,15 @@ def merge(a, left, mid, right):
     # 아래처럼 하면 이전 sorting 된 값들을 기억하지 못하고
     # merge 함수가 호출 될 때마다 새로운 sorted 배열의 값을 가리키게 된다.
     # a = sorted
-    print('a', sorted)
+    print('a', a)
 
 def merge_sort(a, left, right):
     if left < right:
         mid = (left + right) // 2
         merge_sort(a, left, mid)
         merge_sort(a, mid + 1, right)
+        # print('a', a)
+
         merge(a, left, mid, right)
 
 a = [5, 8, 1, 3, 2, 6, 4, 7, 7]
