@@ -33,4 +33,31 @@ def bfs(graph, start):
             q.put(n)
             visited.add(n)
 
-bfs(mygraph, 'A')
+# bfs(mygraph, 'A')
+
+def binary_search(a, left, right, key):
+    if left <= right:
+        mid = (left + right) // 2
+        if a[mid] == key:
+            return mid
+        elif a[mid] > key:
+            return binary_search(a, left, mid - 1, key)
+        else:
+            return binary_search(a, mid + 1, right, key)
+
+def selection_sort(a):
+    n = len(a)
+    for i in range(n - 1):
+        least = i
+        for j in range(i + 1, n):
+            if a[least] > a[j]:
+                least = j
+        a[least], a[i] = a[i], a[least]
+
+data = [3, 9, 1, 4, 2]
+print(data)
+selection_sort(data)
+print(data)
+
+idx = binary_search(data, 0, len(data) - 1, 4)
+print(idx)
