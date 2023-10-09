@@ -8,7 +8,34 @@ def insertion_sort(a):
             j -= 1
         a[j + 1] = key
 
-data = [3, 5, 8, 4, 9, 1, 6, 2, 7]
-print(data)
-insertion_sort(data)
-print(data)
+mygraph = {
+    'A' : {'C', 'D'},
+    'B' : {'D', 'E'},
+    'C' : {'D', 'F'},
+    'D' : {'F'},
+    'E' : {'F'},
+    'F' : {}
+}
+
+my_dict = {}
+
+for k in mygraph:
+    my_dict[k] = 0
+
+for k in mygraph:
+    for v in mygraph[k]:
+        my_dict[v] += 1
+
+vlist = []
+
+for k in my_dict:
+    if my_dict[k] == 0:
+        vlist.append(k)
+
+while vlist:
+    v = vlist.pop()
+    print(v, end=' ')
+    for n in mygraph[v]:
+        my_dict[n] -= 1
+        if my_dict[n] == 0:
+            vlist.append(n)
