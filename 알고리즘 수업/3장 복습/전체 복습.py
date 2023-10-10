@@ -94,7 +94,7 @@ def quick_select(a, left, right, k):
         return quick_select(a, pos + 1, right, left - (pos + 1) + k)
 
 
-data = [2, 2, 3, 4, 5, 6]
+data = [1, 3, 4, 9, 21]
 num = quick_select(data, 0, len(data) - 1, 2)
 print(num)
 # idx = binary_search(data, 0, len(data) - 1, 2)
