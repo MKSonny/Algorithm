@@ -173,6 +173,8 @@ def find_k(a, left, right, k):
     else:
         return find_k(a, pos + 1, right, left - (pos + 1) + k)
 
+
+
 print()
 insertion_sort(data)
 print(data)
@@ -185,3 +187,43 @@ print(n)
     1. 병합 정렬
     2. 퀵 정렬
 '''
+
+# 여기서 mid 값을 받는 이유?
+def merge(a, left, mid, right):
+    i = left
+    j = mid + 1
+    sot = [0] * len(a)
+    # 여기서 k가 left인 이유?
+    k = left
+    while i <= mid and j <= right:
+        if a[i] < a[j]:
+            sot[k] = a[i]
+            i, k = i + 1, k + 1
+        else:
+            sot[k] = a[j]
+            j, k = j + 1, k + 1
+
+    if i > mid:
+        sot[k: k + right - j + 1] = a[j: right + 1]
+    else:
+        sot[k: k + mid - i + 1] = a[i: mid + 1]
+
+    a[left: right + 1] = sot[left: right + 1]
+
+def merge_sort(a, left, right):
+    if left < right:
+        mid = (left + right) // 2
+        merge_sort(a, left, mid)
+        merge_sort(a, mid + 1, right)
+        merge(a, left, mid, right)
+
+def quick_sort(a, left, right):
+    if left < right:
+        pos = partition(a, left, right)
+        quick_sort(a, left, pos - 1)
+        quick_sort(a, pos + 1, right)
+
+data_for_merge = [5, 2, 1, 6, 10, 7]
+# merge_sort(data_for_merge, 0, len(data_for_merge) - 1)
+quick_sort(data_for_merge, 0, len(data_for_merge) - 1)
+print(data_for_merge)
