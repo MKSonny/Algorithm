@@ -1,3 +1,18 @@
+def powerMat(a, n):
+    if n == 1:
+        return a
+    elif n % 2 == 0:
+        return powerMat(multiMat(a, a), n // 2)
+    else:
+        return multiMat(a, (powerMat(multiMat(a, a), (n - 1) // 2)))
+
+def fibo(n):
+    if n < 2:
+        return n
+    mat = [[1, 1], [1, 0]]
+    result = powerMat(mat, n)
+    return result[0][1]
+
 def multiMat(a, b):
     temp = [([0] * len(b[0])) for _ in range(len(a))]
     # k = 0
@@ -12,9 +27,9 @@ def multiMat(a, b):
             temp[i][k] = sum
             sum = 0
             # print(', ', end='')
-    for row in temp:
-        print(row)
-    # print(temp)
+    # for row in temp:
+    #     print(row)
+    return temp
 
 a = [
     [1, 2],
@@ -26,4 +41,4 @@ b = [
     [8, 9, 10]
 ]
 
-multiMat(a, b)
+print(fibo(9))
