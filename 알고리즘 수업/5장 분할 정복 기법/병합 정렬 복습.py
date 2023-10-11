@@ -25,8 +25,10 @@ def merge(A, left, mid, right):
     else:
         temp[k: k + mid - lt + 1] = A[lt: mid + 1]
     A[left: right + 1] = temp[left: right + 1]
+    print(A)
+    print()
 
-list = [4, 3, 2, 8, 9, 1]
-print(list)
+list = [7, 4, 9, 6, 3, 8, 7, 5]
+# print(list)
 merge_sort(list, 0, len(list) - 1)
-print(list)
+# print(list)
