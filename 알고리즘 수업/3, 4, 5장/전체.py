@@ -93,6 +93,6 @@ def merge_sort(a, left, right):
         merge_sort(a, mid + 1, right)
         merge(a, left, mid, right)
 
-data = [5, 2, 1, 9, 10]
+data = [5, 2, 1, 9, 10, 9]
 merge_sort(data, 0, len(data) - 1)
 print(data)
