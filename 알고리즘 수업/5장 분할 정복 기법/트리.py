@@ -4,6 +4,7 @@ class TNode:
         self.left = left
         self.right = right
 
+
 d = TNode('D', None, None)
 e = TNode('E', None, None)
 b = TNode('B', d, e)
@@ -11,12 +12,15 @@ f = TNode('F', None, None)
 c = TNode('C', f, None)
 root = TNode('A', b, c)
 
+
 def calc_height(root):
     if root is None:
         return 0
     hLeft = calc_height(root.left)
     hRight = calc_height(root.right)
     return max(hLeft, hRight) + 1
+
+
 def preorder(root):
     if root is not None:
         print(root.data)
@@ -24,4 +28,16 @@ def preorder(root):
         preorder(root.right)
 
 
-print(calc_height(root))
+cnt = 0
+
+
+def preorder_cnt(root):
+    if root is not None:
+        global cnt
+        cnt += 1
+        preorder_cnt(root.left)
+        preorder_cnt(root.right)
+
+
+preorder_cnt(root)
+print(cnt)
