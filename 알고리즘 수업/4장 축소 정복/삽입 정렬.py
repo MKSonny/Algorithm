@@ -7,6 +7,8 @@ def insertion_sort(A):
             A[j + 1] = A[j]
             j -= 1
         A[j + 1] = key
+
+
 data = [9, 8, 7, 5, 6, 5]
 print(data)
 insertion_sort(data)
