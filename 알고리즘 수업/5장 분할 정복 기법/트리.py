@@ -20,7 +20,6 @@ def calc_height(root):
     hRight = calc_height(root.right)
     return max(hLeft, hRight) + 1
 
-
 def preorder(root):
     if root is not None:
         print(root.data)
@@ -39,5 +38,3 @@ def preorder_cnt(root):
         preorder_cnt(root.right)
 
 
-preorder_cnt(root)
-print(cnt)
