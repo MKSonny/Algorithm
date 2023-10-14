@@ -33,5 +33,5 @@ mygraph = {
     "H": {"E", "G"}
 }
 
-# dfs(mygraph, "A", set())
-bfs(mygraph, "A")
+dfs(mygraph, "A", set())
+# bfs(mygraph, "A")

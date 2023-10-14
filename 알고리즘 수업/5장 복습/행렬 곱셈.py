@@ -38,4 +38,17 @@ b = [
 ]
 # 0 1 2 3 4 5 6 7 8
 # 0 1 1 2 3 5 8 13 21
-print(powerFib(2))
+def multi_mat(a, b):
+    if len(a[0]) != len(b):
+        raise ValueError("Invalid Matrix!")
+
+    return [
+        [
+            sum([a[i][k] * b[k][j] for k in range(len(a[0]))])
+            for j in range(len(b[0]))
+        ]
+        for i in range(len(a))
+    ]
+
+print(multMat(a, b))
+print(multi_mat(a, b))
