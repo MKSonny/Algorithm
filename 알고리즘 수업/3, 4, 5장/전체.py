@@ -101,8 +101,8 @@ def insertion_sort(a):
             j -= 1
         a[j + 1] = key
 
-insertion_sort(data)
-print(data)
+# insertion_sort(data)
+# print(data)
 
 def binary_search(a, left, right, key):
     if left <= right:
@@ -146,10 +146,11 @@ def quick_select(a, left, right, k):
     if pos + 1 == left + k:
         return a[pos]
     elif pos + 1 > left + k:
-        return quick_select(a, left, pos - 1)
+        return quick_select(a, left, pos - 1, k)
     else:
         return quick_select(a, pos + 1, right, left - (pos + 1) + k)
 
+print(data)
 print(quick_select(data, 0, len(data) - 1, 5))
 '''
 4. 축소 정복 기법 -> 모든 경우의 수(상향식, 하향식)
