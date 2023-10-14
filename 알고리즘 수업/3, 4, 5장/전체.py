@@ -114,8 +114,18 @@ def binary_search(a, left, right, key):
         else:
             return binary_search(a, mid + 1, right, key)
 
-print(binary_search(data, 0, len(data) - 1, 2))
+# print(binary_search(data, 0, len(data) - 1, 2))
 
+def power(x, n):
+    if n == 1:
+        return x
+    elif n % 2 == 0:
+        return power(x * x, n // 2)
+    else:
+        return x * power(x * x, (n - 1) // 2)
+
+
+print(power(5, 4))
 '''
 4. 축소 정복 기법 -> 모든 경우의 수(상향식, 하향식)
     1. 삽입 정렬
