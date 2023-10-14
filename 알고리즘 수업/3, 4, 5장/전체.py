@@ -202,6 +202,16 @@ def mul_mat(a, b):
                 sum += a[i][j] * b[j][k]
             temp[i][k] = sum
 
+    return temp
+
+def power_mat(x, n):
+    if n == 1:
+        return x
+    elif n % 2 == 0:
+        return power_mat(mul_mat(x, x), n // 2)
+    else:
+        return mul_mat(x, power_mat(mul_mat(x, x), (n - 1) // 2))
+
 a = [
     [1, 2],
     [3, 4]
@@ -212,7 +222,8 @@ b = [
     [8, 9, 10]
 ]
 
-mul_mat(a, b)
+result = power_mat(a, 3)
+print(result)
 
 '''
 4. 축소 정복 기법 -> 모든 경우의 수(상향식, 하향식)
