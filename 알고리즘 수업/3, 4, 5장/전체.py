@@ -156,7 +156,6 @@ def quick_select(a, left, right, k):
 def merge(a, left, mid, right):
     i = left
     j = mid + 1
-    # k = left인 이유?
     k = left
     sorted = [0] * len(a)
     while i <= mid and j <= right:
@@ -167,9 +166,11 @@ def merge(a, left, mid, right):
             sorted[k] = a[j]
             j, k = j + 1, k + 1
     if i > mid:
+        # 아래처럼 해도 결과가 잘 나온다...
+        # sorted[k : right + 1] = a[j : right + 1]
         sorted[k : k + right - j + 1] = a[j : right + 1]
     else:
-        sorted[k : k + mid - i + 1] = a[i : mid + 1]
+        sorted[k : right + 1] = a[i : mid + 1]
 
     a[left : right + 1] = sorted[left : right + 1]
 
