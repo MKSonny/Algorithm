@@ -7,8 +7,53 @@
     5. 완전 탐색
     6. 그래프 탐색 (DFS, BFS)
 '''
+import queue
 
+data = [4, 1, 3, 9, 10, 2]
 
+def selection_sort(a):
+    n = len(a)
+    for i in range(n - 1):
+        least = i
+        for j in range(i + 1, n):
+            if a[least] > a[j]:
+                least = j
+        a[i], a[least] = a[least], a[i]
+
+mygraph = {
+    "A": {"B", "C"},
+    "B": {"A", "D"},
+    "C": {"A", "D", "E"},
+    "D": {"B", "C", "F"},
+    "E": {"C", "G", "H"},
+    "F": {"D"},
+    "G": {"E", "H"},
+    "H": {"E", "G"}
+}
+
+def dfs(graph, start, visited):
+    if start not in visited:
+        print(start, end=' ')
+        visited.add(start)
+        nbr = graph[start] - visited
+        for v in nbr:
+            dfs(graph, v, visited)
+
+def bfs(graph, start):
+    visited = { start }
+    q = queue.Queue()
+    q.put(start)
+
+    while not q.empty():
+        v = q.get()
+        print(v, end=' ')
+        nbr = graph[v] - visited
+        for n in nbr:
+            q.put(n)
+            visited.add(n)
+
+# dfs(mygraph, 'A', set())
+bfs(mygraph, 'A')
 
 '''
 4. 축소 정복 기법 -> 모든 경우의 수(상향식, 하향식)
@@ -21,78 +66,3 @@
     1. 병합 정렬
     2. 퀵 정렬
 '''
-
-def quick_select(a, left, right, k):
-    pos = partition(a, left, right)
-    if pos + 1 == left + k:
-        return a[pos]
-    elif pos + 1 > left + k:
-        return quick_select(a, left, pos - 1, k)
-    else:
-        return quick_select(a, pos + 1, right, left - (pos + 1) + k)
-
-
-def partition(a, left, right):
-    pivot = a[left]
-    low = left + 1
-    high = right
-
-    while low <= high:
-        while low <= right and a[low] < pivot: low += 1
-        while high >= left and a[high] > pivot: high -= 1
-        if low < high:
-            a[low], a[high] = a[high], a[low]
-
-    a[left], a[high] = a[high], a[left]
-
-    return high
-
-def quick_sort(a, left, right):
-    if left < right:
-        pos = partition(a, left, right)
-        quick_sort(a, left, pos - 1)
-        quick_sort(a, pos + 1, right)
-
-def binary_search(a, left, right, key):
-    if left <= right:
-        mid = (left + right) // 2
-        if a[mid] == key:
-            return mid
-        elif a[mid] < key:
-            return binary_search(a, mid + 1, right, key)
-        else:
-            return binary_search(a, left, mid - 1, key)
-    return -1
-
-def merge(a, left, mid, right):
-    i = left
-    j = mid + 1
-    k = left
-    sorted = [0] * len(a)
-    while i <= mid and j <= right:
-        # 어떻게 해야 안정성을 만족하는가?
-        if a[i] <= a[j]:
-            sorted[k] = a[i]
-            i, k = i + 1, k + 1
-        else:
-            sorted[k] = a[j]
-            j, k = j + 1, k + 1
-
-    if i > mid:
-        sorted[k: k + right - j + 1] = a[j: right + 1]
-    else:
-        sorted[k: k + mid - i + 1] = a[i: mid + 1]
-
-    a[left: right + 1] = sorted[left: right + 1]
-
-
-def merge_sort(a, left, right):
-    if left < right:
-        mid = (left + right) // 2
-        merge_sort(a, left, mid)
-        merge_sort(a, mid + 1, right)
-        merge(a, left, mid, right)
-
-data = [5, 2, 1, 9, 10, 9]
-merge_sort(data, 0, len(data) - 1)
-print(data)
