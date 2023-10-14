@@ -104,6 +104,18 @@ def insertion_sort(a):
 insertion_sort(data)
 print(data)
 
+def binary_search(a, left, right, key):
+    if left <= right:
+        mid = (left + right) // 2
+        if a[mid] == key:
+            return mid
+        elif a[mid] > key:
+            return binary_search(a, left, mid - 1, key)
+        else:
+            return binary_search(a, mid + 1, right, key)
+
+print(binary_search(data, 0, len(data) - 1, 2))
+
 '''
 4. 축소 정복 기법 -> 모든 경우의 수(상향식, 하향식)
     1. 삽입 정렬
