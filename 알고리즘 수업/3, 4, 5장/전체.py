@@ -181,9 +181,16 @@ def merge_sort(a, left, right):
         merge_sort(a, mid + 1, right)
         merge(a, left, mid, right)
 
+def quick_sort(a, left, right):
+    if left < right:
+        pos = partition(a, left, right)
+        quick_sort(a, left, pos - 1)
+        quick_sort(a, pos + 1, right)
+
 
 print(data)
-merge_sort(data, 0, len(data) - 1)
+# merge_sort(data, 0, len(data) - 1)
+quick_sort(data, 0, len(data) - 1)
 print(data)
 '''
 4. 축소 정복 기법 -> 모든 경우의 수(상향식, 하향식)
