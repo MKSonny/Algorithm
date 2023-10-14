@@ -88,7 +88,21 @@ def topology_sort(graph):
                 v_list.append(n)
 
 
-topology_sort(mygraph2)
+# topology_sort(mygraph2)
+
+def insertion_sort(a):
+    n = len(a)
+
+    for i in range(1, n):
+        key = a[i]
+        j = i - 1
+        while j >= 0 and key < a[j]:
+            a[j + 1] = a[j]
+            j -= 1
+        a[j + 1] = key
+
+insertion_sort(data)
+print(data)
 
 '''
 4. 축소 정복 기법 -> 모든 경우의 수(상향식, 하향식)
