@@ -150,8 +150,40 @@ def quick_select(a, left, right, k):
     else:
         return quick_select(a, pos + 1, right, left - (pos + 1) + k)
 
+# print(data)
+# print(quick_select(data, 0, len(data) - 1, 5))
+
+def merge(a, left, mid, right):
+    i = left
+    j = mid + 1
+    # k = left인 이유?
+    k = left
+    sorted = [0] * len(a)
+    while i <= mid and j <= right:
+        if a[i] <= a[j]:
+            sorted[k] = a[i]
+            i, k = i + 1, k + 1
+        else:
+            sorted[k] = a[j]
+            j, k = j + 1, k + 1
+    if i > mid:
+        sorted[k : k + right - j + 1] = a[j : right + 1]
+    else:
+        sorted[k : k + mid - i + 1] = a[i : mid + 1]
+
+    a[left : right + 1] = sorted[left : right + 1]
+
+def merge_sort(a, left, right):
+    if left < right:
+        mid = (left + right) // 2
+        merge_sort(a, left, mid)
+        merge_sort(a, mid + 1, right)
+        merge(a, left, mid, right)
+
+
 print(data)
-print(quick_select(data, 0, len(data) - 1, 5))
+merge_sort(data, 0, len(data) - 1)
+print(data)
 '''
 4. 축소 정복 기법 -> 모든 경우의 수(상향식, 하향식)
     1. 삽입 정렬
