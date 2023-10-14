@@ -192,6 +192,28 @@ print(data)
 # merge_sort(data, 0, len(data) - 1)
 quick_sort(data, 0, len(data) - 1)
 print(data)
+
+def mul_mat(a, b):
+    temp = [([0] * len(b[0])) for _ in range(len(a))]
+    for i in range(len(a)):
+        for k in range(len(b[0])):
+            sum = 0
+            for j in range(len(a[0])):
+                sum += a[i][j] * b[j][k]
+            temp[i][k] = sum
+
+a = [
+    [1, 2],
+    [3, 4]
+]
+
+b = [
+    [5, 6, 7],
+    [8, 9, 10]
+]
+
+mul_mat(a, b)
+
 '''
 4. 축소 정복 기법 -> 모든 경우의 수(상향식, 하향식)
     1. 삽입 정렬
