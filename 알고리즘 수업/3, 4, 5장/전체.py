@@ -222,8 +222,14 @@ b = [
     [8, 9, 10]
 ]
 
-result = power_mat(a, 3)
-print(result)
+def power_fib(n):
+    if n < 2:
+        return n
+    mat = [[1, 1], [1, 0]]
+    result = power_mat(mat, n)
+    return result[0][1]
+
+print(power_fib(0))
 
 '''
 4. 축소 정복 기법 -> 모든 경우의 수(상향식, 하향식)
