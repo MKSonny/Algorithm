@@ -53,7 +53,42 @@ def bfs(graph, start):
             visited.add(n)
 
 # dfs(mygraph, 'A', set())
-bfs(mygraph, 'A')
+# bfs(mygraph, 'A')
+
+mygraph2 = {
+    'A' : {'C', 'D'},
+    'B' : {'D', 'E'},
+    'C' : {'D', 'F'},
+    'D' : {'F'},
+    'E' : {'F'},
+    'F' : {}
+}
+
+def topology_sort(graph):
+    my_dict = {}
+    for key in graph:
+        my_dict[key] = 0
+
+    for k in graph:
+        for v in graph[k]:
+            my_dict[v] += 1
+
+    v_list = []
+
+    for k in my_dict:
+        if my_dict[k] == 0:
+            v_list.append(k)
+
+    while v_list:
+        v = v_list.pop()
+        print(v, end=' ')
+        for n in graph[v]:
+            my_dict[n] -= 1
+            if my_dict[n] == 0:
+                v_list.append(n)
+
+
+topology_sort(mygraph2)
 
 '''
 4. 축소 정복 기법 -> 모든 경우의 수(상향식, 하향식)
