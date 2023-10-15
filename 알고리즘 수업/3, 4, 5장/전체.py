@@ -8,20 +8,42 @@
     6. 그래프 탐색 (DFS, BFS)
 '''
 
-def string_match(t, p):
-    n = len(t)
-    m = len(p)
-    for i in range(n):
-        j = 0
-        while t[i + j] == p[j]:
-            j += 1
-            if j == m:
-                return i
-    return -1
+graph = [
+    [1, 1, 0],
+    [0, 1, 0],
+    [0, 1, 1]
+]
 
-string = list('hello world')
-print(string_match(string, 'el'))
+import queue
 
+# left, right, up, down
+dx = [-1, 1, 0, 0]
+dy = [0, 0, 1, -1]
+
+n, m = map(int, input().split())
+graph = []
+for i in range(n):
+    graph.append(list(map(int, input())))
+
+def bfs(x, y):
+    q = queue.Queue()
+    q.put((x, y))
+    while not q.empty():
+        x, y = q.get()
+        for i in range(4):
+            nx = x + dx[i]
+            ny = y + dy[i]
+            if nx < 0 or nx >= n or ny < 0 or ny >= m:
+                continue
+            if graph[nx][ny] == 0:
+                continue
+            if graph[nx][ny] == 1:
+                graph[nx][ny] = graph[x][y] + 1
+                q.put((nx, ny))
+
+    return graph[n - 1][m - 1]
+
+print(bfs(0, 0))
 '''
 4. 축소 정복 기법 -> 모든 경우의 수(상향식, 하향식)
     1. 삽입 정렬
