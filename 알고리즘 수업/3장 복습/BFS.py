@@ -15,12 +15,14 @@ def bfs(graph, start):
     visited = { start }
     q = queue.Queue()
     q.put(start)
+
     while not q.empty():
         v = q.get()
         print(v, end=' ')
         nbr = graph[v] - visited
-        for b in nbr:
-            q.put(b)
-            visited.add(b)
+        for n in nbr:
+            q.put(n)
+            visited.add(n)
+
 
 bfs(mygraph, 'A')
