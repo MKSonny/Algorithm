@@ -7,8 +7,9 @@ def partition(a, left, right):
         while high >= left and a[high] > pivot: high -= 1
         if low < high:
             a[low], a[high] = a[high], a[low]
-    if low > high:
-        a[left], a[high] = a[high], a[left]
+
+    a[left], a[high] = a[high], a[left]
+
     return high
 
 def quick_sort(a, left, right):

@@ -21,6 +21,19 @@ def quick_select(a, left, right, k):
     else:
         return quick_select(a, left, pos - 1, k)
 
+def quick_select_rev(a, left, right, k):
+    pos = partition(a, left, right)
+    rank = right - pos + 1  # 현재 위치의 요소는 오른쪽 부분의 rank번째로 큰 요소입니다.
+    if rank == k:
+        return a[pos]
+    elif rank < k:
+        return quick_select_rev(a, left, pos - 1, k - rank)
+    else:
+        return quick_select_rev(a, pos + 1, right, k)
+
+
+
 
 data = [1, 2, 3, 4, 5]
-print(quick_select(data, 0, len(data) - 1, 3))
+print(quick_select(data, 0, len(data) - 1, 1))
+print(quick_select_rev(data, 0, len(data) - 1, 1))
