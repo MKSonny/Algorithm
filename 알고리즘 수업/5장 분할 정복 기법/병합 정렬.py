@@ -23,6 +23,7 @@ def merge(A, left, mid, right):
         sorted[k : k + mid - rt + 1] = A[lt: mid + 1]
     A[left: right + 1] = sorted[left: right + 1]
 
+
 list = [1, 3, 7, 8, 2, 4, 5, 9]
 print(list)
 merge_sort(list, 0, len(list) - 1)

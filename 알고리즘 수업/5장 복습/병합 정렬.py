@@ -1,7 +1,7 @@
 def merge_sort(A, left, right):
     if left < right:
         mid = (left + right) // 2
-        merge_sort(A, left, mid - 1)
+        merge_sort(A, left, mid)
         merge_sort(A, mid + 1, right)
         merge(A, left, mid, right)
 

@@ -5,10 +5,16 @@ def partition(a, left, right):
     while low <= high:
         while low <= right and a[low] <= pivot: low += 1
         while high >= left and a[high] > pivot: high -= 1
-        if low < high:
-            a[low], a[high] = a[high], a[low]
-    if low > high:
-        a[high], a[left] = a[left], a[high]
+
+        print('piv', pivot)
+        print(low, high)
+
+        a[low], a[high] = a[high], a[low]
+        print(a)
+
+    a[high], a[left] = a[left], a[high]
+
+
     return high
 
 def quick_sort(a, left, right):

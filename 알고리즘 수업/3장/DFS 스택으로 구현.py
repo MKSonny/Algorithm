@@ -27,3 +27,8 @@ def dfs_stack(graph, start):
 
 # A B D C E H G F
 dfs_stack(mygraph, 'A')
+
+sum = 0
+for i in range(n):
+    for j in range(n):
+        sum = sum + 1
