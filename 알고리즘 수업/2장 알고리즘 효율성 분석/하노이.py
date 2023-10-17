@@ -1,0 +1,11 @@
+def hanoi_tower(n, fr, tmp, to):
+    if n == 1:
+        print('원판 1: %s ---> %s' % (fr, to))
+        return 1
+    else:
+        cnt1 = hanoi_tower(n - 1, fr, to, tmp)
+        print('원판 %d: %s ---> %s' % (n, fr, to))
+        cnt2 = hanoi_tower(n - 1, tmp, fr, to)
+        return 1 + cnt1 + cnt2
+
+print(hanoi_tower(4, 'A', 'B', 'C'))
