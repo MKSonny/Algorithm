@@ -32,6 +32,5 @@ mygraph = {
     "G": {"E", "H"},
     "H": {"E", "G"}
 }
-
 dfs(mygraph, "A", set())
 # bfs(mygraph, "A")
