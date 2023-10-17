@@ -3,7 +3,6 @@ def merge(a, left, mid, right, tmp):
     j = mid + 1
     k = left
     cnt = 0
-
     while i <= mid and j <= right:
         if a[i] <= a[j]:
             tmp[k] = a[i]
@@ -13,15 +12,12 @@ def merge(a, left, mid, right, tmp):
             cnt += mid - i + 1
             j += 1
         k += 1
-
     if i > mid:
-        tmp[k : k + right - j + 1] = a[j: right + 1]
+        tmp[k : k + right - j + 1] = a[j : right + 1]
     else:
-        tmp[k : k + mid - i + 1] = a[i: mid + 1]
+        tmp[k : k + mid - i + 1] = a[i : mid + 1]
 
-    print(tmp)
-
-    a[left: right + 1] = tmp[left: right + 1]
+    a[left : right + 1] = tmp[left:right + 1]
     return cnt
 
 def merge_sort(a, left, right, tmp):
@@ -33,12 +29,9 @@ def merge_sort(a, left, right, tmp):
         cnt += merge(a, left, mid, right, tmp)
     return cnt
 
-def inver_cnt(a):
+def count_reverse(a):
     tmp = [0] * len(a)
-    cnt = merge_sort(a, 0, len(a) - 1, tmp)
-    return cnt
+    return merge_sort(a, 0, len(data) - 1, tmp)
 
 data = [1, 5, 2, 3, 8, 10]
-
-print(inver_cnt(data))
-print(data)
+print(count_reverse(data))
