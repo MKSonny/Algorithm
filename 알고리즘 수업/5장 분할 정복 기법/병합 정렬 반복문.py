@@ -13,7 +13,8 @@ def merge_sort_iter(a):
             처음에는 1로 시작하고, 그 다음에는 2, 4, 8 등으로 두 배씩 증가하면서 작업을 수행합니다.
             left: 현재 병합하는 부분 배열의 왼쪽 끝 인덱스를 나타냅니다.
             2 * current_size + left - 1: 이 부분은 중간 지점 mid를 계산합니다. 
-            이 수식은 현재 병합하려는 부분 배열에서 중간 지점 mid를 나타내며, mid는 부분 배열을 두 개의 부분으로 나눌 때의 중간 지점을 가리킵니다.
+            이 수식은 현재 병합하려는 부분 배열에서 중간 지점 mid를 나타내며, 
+            mid는 부분 배열을 두 개의 부분으로 나눌 때의 중간 지점을 가리킵니다.
             '''
             right = ((2 * current_size + left - 1, len(a) - 1)[2 * current_size + left - 1 > len(a) - 1])
             merge(a, left, mid, right)
