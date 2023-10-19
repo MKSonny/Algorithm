@@ -23,6 +23,7 @@ def BFS(x,y):
 
 # 행렬만들기
 for i in range(T):
+    # M, N 사용 주의
     M, N, K = map(int,input().split())
     matrix = [[0]*(M) for _ in range(N)]
     cnt = 0
