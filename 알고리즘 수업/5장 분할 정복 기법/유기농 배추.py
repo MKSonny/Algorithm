@@ -27,7 +27,6 @@ for i in range(T):
     M, N, K = map(int,input().split())
     matrix = [[0]*(M) for _ in range(N)]
     cnt = 0
-    # 9, 4
 
     for j in range(K):
         x,y = map(int, input().split())
