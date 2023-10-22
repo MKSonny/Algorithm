@@ -1,6 +1,6 @@
 T = int(input()) #테스트케이스의 개수
 
-# left, right, down, up
+# left, right, down
 dx = [-1,1,0,0]
 dy = [0,0,-1,1]
 
