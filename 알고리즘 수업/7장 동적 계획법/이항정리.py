@@ -1,3 +1,4 @@
+# 이항정리
 def bino_coef_dc(n, k):
     if k == 0 or k == n:
         return 1
