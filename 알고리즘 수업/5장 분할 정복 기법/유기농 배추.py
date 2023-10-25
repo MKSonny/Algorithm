@@ -1,47 +1,13 @@
-T = int(input()) #테스트케이스의 개수
+test_case = int(input())
 
 # left, right, down, up
 dx = [-1,1,0,0]
 dy = [0,0,-1,1]
 
-
-def dfs(x, y):
-    dx = [1, -1, 0, 0]
-    dy = [0, 0, 1, -1]
-
-    # 상,하,좌,우 확인
-    for i in range(4):
-        nx = x + dx[i]
-    ny = y + dy[i]
-
-    if (0 <= nx < N) and (0 <= ny < M):
-        if matrix[nx][ny] == 1:
-            matrix[nx][ny] = -1
-        dfs(nx, ny)
-
-
-def BFS(x,y):
-    queue = [(x,y)]
-    matrix[x][y] = 0 # 방문처리
-
-    while queue:
-        x,y = queue.pop(0)
-
-        for i in range(4):
-            nx = x + dx[i]
-            ny = y + dy[i]
-
-            if nx < 0 or nx >= M or ny < 0 or ny >= N:
-                continue
-
-            if matrix[nx][ny] == 1 :
-                queue.append((nx,ny))
-                matrix[nx][ny] = 0
-
 # 행렬만들기
 for i in range(T):
     # M, N 사용 주의
-    M, N, K = map(int,input().split())
+    M, N, K = map(int, input().split())
     matrix = [[0]*(M) for _ in range(N)]
     cnt = 0
 
@@ -52,7 +18,7 @@ for i in range(T):
     for a in range(N):
         for b in range(M):
             if matrix[a][b] == 1:
-                BFS(a,b)
+                dfs(a,b)
                 cnt += 1
 
     print(cnt)
