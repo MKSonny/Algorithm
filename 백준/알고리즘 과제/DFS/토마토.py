@@ -2,8 +2,6 @@
 dx = [-1,1,0,0]
 dy = [0,0,-1,1]
 
-
-
 m, n = map(int, input().split())
 # 토마토 받아서 넣기. 이차원 리스트로 만들어질거.
 matrix = [list(map(int, input().split())) for _ in range(n)]
