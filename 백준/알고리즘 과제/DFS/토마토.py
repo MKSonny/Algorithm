@@ -20,7 +20,7 @@ def dfs_V2(y, x):
             dfs_V2(y, x + 1)
 
 dfs_cnt = 0
-def dfs(y, x):
+def bfs(y, x):
     dx = [1, -1, 0, 0]
     dy = [0, 0, 1, -1]
     global cnt
