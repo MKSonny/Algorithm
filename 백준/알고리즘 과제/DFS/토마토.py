@@ -1,4 +1,5 @@
-# left, right, down, up
+import queue
+
 dx = [-1,1,0,0]
 dy = [0,0,-1,1]
 
@@ -6,45 +7,38 @@ m, n = map(int, input().split())
 # 토마토 받아서 넣기. 이차원 리스트로 만들어질거.
 matrix = [list(map(int, input().split())) for _ in range(n)]
 print(matrix)
+
+
+def print_queue_contents(q):
+    elements_copy = list(q.queue)
+    for element in elements_copy:
+        print(element)
+
+
+
 cnt = 0
-def dfs_V2(y, x):
-    global cnt
-    if y < 0:
-        cnt += 1
-    if (0 <= x < m) and (0 <= y < n):
-        if matrix[y][x] == 1 or matrix[y][x] == 0:
-            matrix[y][x] = -1
-            dfs_V2(y - 1, x)
-            dfs_V2(y + 1, x)
-            dfs_V2(y, x - 1)
-            dfs_V2(y, x + 1)
+def bfs(q):
+    q2 = queue.Queue()
 
-dfs_cnt = 0
-def bfs(y, x):
-    dx = [1, -1, 0, 0]
-    dy = [0, 0, 1, -1]
-    global cnt
-    global dfs_cnt
+    while not q.empty():
+        (y, x) = q.get()
+        for i in range(4):
+            nx = x + dx[i]
+            ny = y + dy[i]
 
-    # 상,하,좌,우 확인
-    for i in range(4):
-        # print(x, y)
-        nx = x + dx[i]
-        ny = y + dy[i]
+            if (0 <= nx < m) and (0 <= ny < n) and matrix[ny][nx] == 0:
+                matrix[ny][nx] = 1
+                q2.put((ny, nx))
+    print(q2.qsize())
+    bfs(q2)
 
-        # 갈 수 있는 갈래길의 개수를 알 수 있다.
-
-        if (0 <= nx < m) and (0 <= ny < n) and matrix[ny][nx] == 0:
-            cnt += 1
-        if (0 <= nx < m) and (0 <= ny < n) and matrix[ny][nx] == 0:
-            matrix[ny][nx] = -1
-            dfs(ny, nx)
+q = queue.Queue()
 
 for i in range(n):
     for j in range(m):
         if matrix[i][j] == 1:
-            dfs(i, j)
-            # dfs_V2(i, j)
+            q.put((i, j))
+            bfs(q)
 
 print(matrix)
 
@@ -56,3 +50,5 @@ print(cnt)
 0 0 0 0 0 0
 0 0 0 0 0 1
 '''
+
+
