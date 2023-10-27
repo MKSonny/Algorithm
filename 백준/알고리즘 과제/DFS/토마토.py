@@ -9,6 +9,30 @@ matrix = [list(map(int, input().split())) for _ in range(n)]
 
 cnt = 0
 zero_cnt = 0
+
+def bfs_v2(q):
+    global cnt
+    global zero_cnt
+
+    if q.qsize() == 0:
+        cnt -= 1
+        return
+    q2 = queue.Queue()
+    cnt += 1
+
+    while not q.empty():
+        (y, x) = q.get()
+        for i in range(4):
+            nx = x + dx[i]
+            ny = y + dy[i]
+
+            if (0 <= nx < m) and (0 <= ny < n) and matrix[ny][nx] == 0:
+                matrix[ny][nx] = 1
+                zero_cnt += 1
+                q2.put((ny, nx))
+    # print(q2.qsize())
+    bfs(q2)
+
 def bfs(q):
     global cnt
     global zero_cnt
