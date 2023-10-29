@@ -1,5 +1,3 @@
-import heapq
-
 n, m = map(int, input().split())
 
 dia = []
@@ -7,17 +5,38 @@ bag = []
 
 
 for _ in range(n):
-    reverse = list(map(int, input().split()))
+    dia.append(list(map(int, input().split())))
     # reverse[0], reverse[1] = reverse[1], reverse[0]
-    heapq.heappush(dia, (-reverse[1], reverse[0]))
+    # heapq.heappush(dia, (-reverse[1], reverse[0]))
 
 
 for _ in range(m):
-    heapq.heappush(bag, -(int(input())))
-    # bag.append()
+    bag.append(int(input()))
 
-max_val = 0
+dia.sort()
+bag.sort()
 
+# print(dia)
+# print(bag)
+
+max_val_total = 0
+cnt = 0
+
+for weight in bag:
+    max_index = 0
+    max_val = 0
+    for i, dia_get in enumerate(dia):
+        dia_weight = dia_get[0]
+        dia_value = dia_get[1]
+        if weight >= dia_weight:
+            if max_val <= dia_value:
+                max_val = dia_value
+                max_index = i
+        else:
+            break
+    max_val_total += dia.pop(max_index)[1]
+
+print(max_val_total)
 # 0, 1 1, 1 , 0, 1
 
 # 먼저 다이아몬드의 가치를 높은 순으로 배치한다.
@@ -29,25 +48,27 @@ max_take = 0
 toggle = 0
 cnt = 0
 
-bag_value = -heapq.heappop(bag)
 
-while True:
-    dia_get = heapq.heappop(dia)
-    dia_value = -dia_get[0]
-    dia_weight = dia_get[1]
 
-    toggle = 1
-    # print(dia_value, dia_weight)
+# bag_value = -heapq.heappop(bag)
 
-    if bag_value >= dia_weight:
-        max_take += dia_value
-        cnt += 1
-        if cnt == m:
-            break
-        bag_value = -heapq.heappop(bag)
-        # bag_value = -bag.pop()
-
-print(max_take)
+# while True:
+#     dia_get = heapq.heappop(dia)
+#     dia_value = -dia_get[0]
+#     dia_weight = dia_get[1]
+#
+#     toggle = 1
+#     # print(dia_value, dia_weight)
+#
+#     if bag_value >= dia_weight:
+#         max_take += dia_value
+#         cnt += 1
+#         if cnt == m:
+#             break
+#         bag_value = -heapq.heappop(bag)
+#         # bag_value = -bag.pop()
+#
+# print(max_take)
 
 # for i in range(n - 1):
 #     max_val = i
