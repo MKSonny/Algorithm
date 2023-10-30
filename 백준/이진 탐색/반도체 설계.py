@@ -37,5 +37,5 @@ for i in range(1, len(a)):
         save_idx[idx] = i
         res[idx] = a[i]
 print(len(res))
-print(res)
+# print(res)
 # print(save_idx)
