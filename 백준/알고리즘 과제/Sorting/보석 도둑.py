@@ -1,6 +1,8 @@
 import sys
 import heapq
 
+# 힙큐와 반복문을 사용해서 최대한 시간복잡도를 낮춰도 시간 초과가 나온다.
+# 아래처럼 sys로 input을 받아야 시간 초과가 발생하지 않는다.
 n, m = map(int, sys.stdin.readline().split())
 
 dia = []
@@ -45,7 +47,10 @@ for weight in bag:
         # 아래 처럼하면 가장 싼 다이아가 나온다.
         # 방지하기 위해 위에서 -를 붙혀 오름차순이 되도록 한다.
         max_value += (-heapq.heappop(temp))
+
     # dia가 비어있다는 의미는 temp에 모두 넣었다는 것,
+    elif not dia:
+        break
     '''
     만약 가방이 오름차순이 아닌 내림차순으로 정렬되어 있었다면
     만약 다이아의 무게가 = [1, 10, 100] 이고 (무게와 가치가 동일하다고 가정)
@@ -56,8 +61,6 @@ for weight in bag:
     temp = [-10, -1] 무게 10인 다이아의 가치를 출력, dia 에는 아직 100이 남아 있다.
     따라서 break를 하지않고 다음 for문으로 즉 다음 가방으로 넘어간다.
     '''
-    elif not dia:
-        break
     # print('temp', temp)
     # print('bag', bag)
 print(max_value)
