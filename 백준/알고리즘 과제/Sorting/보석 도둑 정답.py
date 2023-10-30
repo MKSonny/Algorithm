@@ -10,6 +10,9 @@ for _ in range(K):
     bags.append(int(sys.stdin.readline()))
 bags.sort()
 
+print(bags)
+print(jew)
+
 answer = 0
 tmp_jew = []
 for bag in bags:
