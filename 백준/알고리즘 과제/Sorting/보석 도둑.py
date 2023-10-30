@@ -1,3 +1,5 @@
+import heapq
+
 n, m = map(int, input().split())
 
 dia = []
@@ -5,13 +7,13 @@ bag = []
 
 
 for _ in range(n):
-    dia.append(list(map(int, input().split())))
+    heapq.heappush(dia, list(map(int, input().split())))
     # reverse[0], reverse[1] = reverse[1], reverse[0]
     # heapq.heappush(dia, (-reverse[1], reverse[0]))
 
 
 for _ in range(m):
-    bag.append(int(input()))
+    heapq.heappush(bag, int(input()))
 
 dia.sort()
 bag.sort()
