@@ -1,43 +1,17 @@
-string_a = list('ABCDEF')
-string_b = list('GBCDFE')
+string_a = list("HELLO WORLD")
+string_b = list("GAME OVER")
 
-n = len(string_a)
-lcs = [[0]*(n + 1) for _ in range(n + 1)]
-# print(lcs)
+table = [[0] * len(string_a) for _ in range(len(string_b))]
 
-for j in range(len(string_a)):
-    for i in range(len(string_b)):
-        if i == 0 or j == 0:
-            lcs[i][j] = 0
-        elif string_a[i] == string_b[j]:
-            lcs[i][j] = lcs[i - 1][j - 1] + 1
+for i in range(len(string_b)):
+    for j in range(len(string_a)):
+        if string_b[i] == string_a[j]:
+            # print('a')
+            table[i][j] = table[i - 1][j - 1] + 1
         else:
-            lcs[i][j] = max(lcs[i - 1][j], lcs[i][j - 1])
+            table[i][j] = max(table[i - 1][j], table[i][j - 1])
 
-for i in range(n + 1):
-    for j in range(n + 1):
-        print(lcs[j][i], end=' ')
-    print()
+for row in table:
+    print(row)
 
-result = []
-def lcs_dp(x, y):
-    m = len(x)
-    n = len(y)
-    L = [[None]*(n + 1) for _ in range(m + 1)]
-
-    for i in range(m + 1):
-        for j in range(n + 1):
-            if i == 0 or j == 0:
-                L[i][j] = 0
-            elif x[i - 1] == y[j - 1]:
-                L[i][j] = L[i - 1][j - 1] + 1
-            else:
-                L[i][j] = max(L[i - 1][j], L[i][j - 1])
-
-    return L
-
-def lcs_search():
-    
-
-lcs = lcs_dp(string_a, string_b)
-print(lcs)
+table[len(string_b) - 1][len(string_a) -1]
