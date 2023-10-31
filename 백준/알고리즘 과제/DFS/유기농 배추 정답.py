@@ -1,40 +1,37 @@
-T = int(input()) #테스트케이스의 개수
+import sys
+sys.setrecursionlimit(10000)
 
-dx = [-1,1,0,0]
-dy = [0,0,-1,1]
+test_case = int(input())
 
-def BFS(x,y):
-    queue = [(x,y)]
-    matrix[x][y] = 0 # 방문처리
+def dfs(y, x):
+    if (0 <= y < N) and (0 <= x < M) and matrix[y][x] == 1: 
+        matrix[y][x] = -1
 
-    while queue:
-        x,y = queue.pop(0)
+        # 위
+        dfs(y - 1, x)
+        # 아래
+        dfs(y + 1, x)
+        # 왼쪽
+        dfs(y, x - 1)
+        # 오른쪽
+        dfs(y, x + 1)
 
-        for i in range(4):
-            nx = x + dx[i]
-            ny = y + dy[i]
-
-            if nx < 0 or nx >= M or ny < 0 or ny >= N:
-                continue
-
-            if matrix[nx][ny] == 1 :
-                queue.append((nx,ny))
-                matrix[nx][ny] = 0
-
-# 행렬만들기
-for i in range(T):
-    M, N, K = map(int,input().split())
-    matrix = [[0]*(N) for _ in range(M)]
+for i in range(test_case):
+    # M, N 사용 주의
+    M, N, K = map(int, input().split())
+    matrix = [[0]*(M) for _ in range(N)]
     cnt = 0
 
     for j in range(K):
-        x,y = map(int, input().split())
-        matrix[x][y] = 1
+        x, y = map(int, input().split())
+        matrix[y][x] = 1
 
-    for a in range(M):
-        for b in range(N):
-            if matrix[a][b] == 1:
-                BFS(a,b)
+    # 가로길이(열) M(1 ≤ M ≤ 50)
+    # 세로길이(행) N(1 ≤ N ≤ 50)
+    for y in range(N):
+        for x in range(M):
+            if matrix[y][x] == 1:
+                dfs(y, x)
                 cnt += 1
 
     print(cnt)

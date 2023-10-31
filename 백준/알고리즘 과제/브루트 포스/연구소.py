@@ -34,7 +34,7 @@ for i in range(n):
         elif matrix[i][j] == 2:
             virus.append((i, j))
 
-all_combi = combination(zeros, len(zeros))
+all_combi = combination(zeros)
 
 prev = [[[0] for _ in range(m)] for _ in range(n)]
 prev[:] = matrix[:]

@@ -17,6 +17,5 @@ for i in range(1, len(a)):
     if res[-1] < a[i]:
         res.append(a[i])
     else:
-        # print(res)
         res[binary_search(res, a[i], 0, len(res) - 1)] = a[i]
 print(len(res))

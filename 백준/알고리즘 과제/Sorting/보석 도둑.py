@@ -41,7 +41,9 @@ for weight in bag:
     # dia가 비어있다는 의미는 temp에 모두 넣었다는 것,
     elif not dia:
         break
-    '''
+
+print(max_value)
+'''
     만약 가방이 오름차순이 아닌 내림차순으로 정렬되어 있었다면
     만약 다이아의 무게가 = [1, 10, 100] 이고 (무게와 가치가 동일하다고 가정)
     가방이 [100, 10] 이렇게 되었다면
@@ -53,8 +55,6 @@ for weight in bag:
     '''
     # print('temp', temp)
     # print('bag', bag)
-print(max_value)
-
 '''
     아래처럼 하면 예제에서는 모두 맞지만 제출시 인덱스 오류가 발생한다.
     이유는 dia.append()를 할 때 기준 dia 리스트는 위에서 sort을 한 것처럼
@@ -64,90 +64,3 @@ print(max_value)
     시간초과가 발생한다. 따라서 힙큐를 사용해야한다.
     하지만 가방은 위와 같은 문제가 발생하지 않아 리스트로 sorting 하면 된다.
 '''
-
-# print(max_value)
-
-
-# print(max_value)
-
-
-# for weight in bag:
-#     max_index = 0
-#     max_val = 0
-#     for i, dia_get in enumerate(dia):
-#         dia_weight = dia_get[0]
-#         dia_value = dia_get[1]
-#         if weight >= dia_weight:
-#             if max_val <= dia_value:
-#                 max_val = dia_value
-#                 max_index = i
-#         else:
-#             break
-#     max_val_total += dia.pop(max_index)[1]
-#
-# print(max_val_total)
-# # 0, 1 1, 1 , 0, 1
-#
-
-#
-# # re_dia = []
-# max_take = 0
-# toggle = 0
-# cnt = 0
-
-
-
-# bag_value = -heapq.heappop(bag)
-
-# while True:
-#     dia_get = heapq.heappop(dia)
-#     dia_value = -dia_get[0]
-#     dia_weight = dia_get[1]
-#
-#     toggle = 1
-#     # print(dia_value, dia_weight)
-#
-#     if bag_value >= dia_weight:
-#         max_take += dia_value
-#         cnt += 1
-#         if cnt == m:
-#             break
-#         bag_value = -heapq.heappop(bag)
-#         # bag_value = -bag.pop()
-#
-# print(max_take)
-
-# for i in range(n - 1):
-#     max_val = i
-#     for j in range(i + 1, n):
-#         if dia[j][1] > dia[max_val][1]:
-#             max_val = j
-#
-#     dia[i], dia[max_val] = dia[max_val], dia[i]
-#
-# for i in range(m - 1):
-#     max_val = i
-#     for j in range(i + 1, m):
-#         if bag[j] > bag[max_val]:
-#             max_val = j
-#
-#     bag[i], bag[max_val] = bag[max_val], bag[i]
-
-# max_take = 0
-
-# print(dia)
-# print(bag)
-# i = 0
-# j = 0
-#
-# while True:
-#     if len(bag) == 0:
-#         break
-#
-#     if bag[0] >= dia[j][0]:
-#         max_take += dia.pop(0)[1]
-#         bag.pop()
-#     else:
-#         j += 1
-#
-# print(max_take)
