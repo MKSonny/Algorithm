@@ -1,4 +1,8 @@
 class disjointSets:
+    '''
+    disjoint에는 본래 '뿔뿔이 흩어지다'라는 뜻이 있다.
+    그런데 수학에서는 주로 '따로 떨어져 있는'을 의미한다.
+    '''
     def __init__(self, n):
         # parent = [-1, -1, -1, -1, -1, -1, -1]
         self.parent = [-1] * n
