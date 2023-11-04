@@ -13,6 +13,7 @@ class disjointSets:
     def find(self, id):
         while self.parent[id] >= 0:
             print('id', id)
+            # 계속해서 부모쪽으로 간다.
             # 6이 들어올 경우 6의 부모는 3
             # 3의 부모는 3
             id = self.parent[id]
