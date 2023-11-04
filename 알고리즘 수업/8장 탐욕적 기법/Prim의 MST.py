@@ -2,12 +2,15 @@ def getMinVertex(dist, selected):
     minv = -1
     mindist = INF
     for v in range(len(dist)):
-
         if not selected[v] and dist[v] < mindist:
             mindist = dist[v]
             minv = v
 
     return minv
+
+# 1. 시작 노드에서 경로들을 조사하고 최소 경로를 찾고 해당 vertex를 반환한다.
+# 2. 해당 vertex를 visited에 추가한다.
+# 3. 그리고 해당 노드에서 다시 최소 경로를 찾고 해당 vertex를 반환한다.
 
 def MSTPrim(vertex, weight):
     vsize = len(vertex)
@@ -18,9 +21,7 @@ def MSTPrim(vertex, weight):
     for i in range(vsize):
         # 처음에는 전부 INF니까 u = 0
         u = getMinVertex(dist, selected)
-        print('u', u)
         selected[u] = True
-        print('selected', selected)
 
 
         for v in range(vsize):
@@ -50,5 +51,5 @@ weight = [
     [None, 15, None, 18, 25, None, None]
 ]
 
-print("MST by Prim's Algoritm")ㅇ
+print("MST by Prim's Algoritm")
 MSTPrim(vertex, weight)
