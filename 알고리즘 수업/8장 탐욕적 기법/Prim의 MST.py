@@ -50,5 +50,5 @@ weight = [
     [None, 15, None, 18, 25, None, None]
 ]
 
-print("MST by Prim's Algoritm")
+print("MST by Prim's Algoritm")ㅇ
 MSTPrim(vertex, weight)
