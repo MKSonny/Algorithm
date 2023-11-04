@@ -8,13 +8,25 @@ class disjointSets:
     # 부모 노드를 찾는 함수
     def find(self, id):
         while self.parent[id] >= 0:
+            print('id', id)
+            # 6이 들어올 경우 6의 부모는 3
+            # 3의 부모는 3
             id = self.parent[id]
         return id
 
     # 이전 강의에서 봤던 합집합 찾기에서
     # 대소 비교를 했는데 여기에서는 모조건 a < b라서 필요없다.
     def union(self, s1, s2):
+        # (1, 6, 15) 이후
+        # (1, 2, 16)이 올 경우, s1 = 6, s2 = 3 이 오게 된다.
+        # 이전에 [1] = 6 이고 [3] = 3 이기 때문에
+        # parent = [-1, 6, 3, -1, -1, -1, -1]
+        # parent = [-1, 2, -1, -1, -1, -1, -1] 주의) 틀림
+        # parent = [-1, 6, 3, -1, -1, -1, 3] 이 맞다
+        # 로 바뀌게 된다. 왜 1의 부모는 6이고 2의 부모는 3이니까
+        print('s1, s2', s1, s2)
         self.parent[s1] = s2
+        print('parent', self.parent)
         self.set_size = self.set_size - 1
 
 
@@ -28,8 +40,14 @@ def MSTKruskal(V, adj):
     for i in range(n - 1):
         for j in range(i + 1, n):
             if adj[i][j] != None:
+
                 # 여기서 i와 j가 의미하는 것은?
+                # [5, 2, 3, -1, -1, -1, -1]
+                # [-1, -1, -1, -1, -1, -1, -1]
+
                 # (0, 1, 29), 0과 1노드가 29의 비용으로 연결되어 있다.
+                # (1, 2, 16)를 연결하고 (3, 6, 18)을 연결할 때
+                # 사이클이 발생한다. 이 때 사이클이 발생하는 지 어떻게 아는가?
                 E.append((i, j, adj[i][j]))
 
     print(E)
@@ -47,6 +65,9 @@ def MSTKruskal(V, adj):
         # 연결된 두 노드의 부모 노드를 찾는다.
         uset = dsets.find(e[0])
         vset = dsets.find(e[1])
+
+        # print('uset', uset)
+        # print('vset', vset)
 
         # 만약 부모가 서로 다르다면
         # 연결되어있지 않다는 의미, 연결해준다.
