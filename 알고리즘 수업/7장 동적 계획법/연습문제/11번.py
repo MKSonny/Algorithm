@@ -1,12 +1,18 @@
-def knapSack_mem(W, wt, val, n):
-    if A[n][W] == None :
-        if n == 0 or W == 0 :
-            A[n][W] = 0
-        elif (wt[n-1] > W):
-            A[n][W] = knapSack_mem(W, wt, val, n-1)
-        else:
-            valWithout = knapSack_mem(W, wt, val, n-1)
-            valWith = val[n-1] + knapSack_mem(W-wt[n-1], wt, val, n-1)
-            A[n][W] = max(valWith, valWithout)
+value = [26, 20, 14, 40, 50]
+weight = [3, 2, 1, 4, 5]
+W = 6
+def knapsack_dp(value, weight, W):
+    a = [[0 for _ in range(W + 1)] for _ in range(len(value) + 1)]
 
-    return A[n][W]
+    for i in range(1, len(value) + 1):
+        for w in range(1, W + 1):
+            if weight[i - 1] > w:
+                a[i][w] = a[i - 1][w]
+            else:
+                valueWith = a[i - 1][w - weight[i - 1]] + value[i - 1]
+                valueWithout = a[i - 1][w]
+                a[i][w] = max(valueWith, valueWithout)
+
+    return a[len(value)][W]
+
+print(knapsack_dp(value, weight, W))
