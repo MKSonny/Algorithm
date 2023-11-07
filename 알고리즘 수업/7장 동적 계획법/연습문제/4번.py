@@ -10,4 +10,12 @@ def bino_coef_dp(n, k):
 
     return C[n][k]
 
+def bino_coef_mem(n, k):
+    if C[n][k] == None :
+        if k == 0 or k == n:
+            C[n][k] = 1
+    else :
+        C[n][k] = bino_coef_mem(n-1 , k-1) + bino_coef_mem(n-1 , k)
+    return C[n][k]
+
 print(bino_coef_dp(6, 3))
