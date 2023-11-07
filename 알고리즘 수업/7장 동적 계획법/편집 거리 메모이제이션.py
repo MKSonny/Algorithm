@@ -3,6 +3,10 @@ T = "thursday"
 m = len(S)
 n = len(T)
 
+print(m, n)
+
+# 처음 mem은 모두 None으로 초기화 되어 있다.
+# 여기서 mem은 무엇을 저장?
 mem = [[None for _ in range(n)] for _ in range(m)]
 
 def edit_distance_mem(S, T, m, n, mem):
@@ -26,6 +30,7 @@ def edit_distance_mem(S, T, m, n, mem):
             mem[m - 1][n - 1] = min(edit_distance_mem(S, T, m - 1, n - 1, mem),
                                     edit_distance_mem(S, T, m, n - 1, mem),
                                     edit_distance_mem(S, T, m - 1, n, mem)) + 1
+        print("mem[%d][%d] = " % (m - 1, n - 1), mem[m - 1][n - 1])
 
     return mem[m - 1][n - 1]
 
