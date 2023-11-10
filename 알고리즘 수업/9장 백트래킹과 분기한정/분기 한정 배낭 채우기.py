@@ -33,5 +33,6 @@ def knapSack_bnb(obj, W, level, weight, profit, maxProfit):
     return maxProfit
 
 obj = [(2.5, 30, 'A'), (3.2, 50, 'B'), (1.7, 70, 'C'), (5, 60, 'D'), (4.1, 40, 'E'), ]
+W = 10
 print(obj)
-print("0-1 배낭문제(분기 한정):", knapSack_bnb(obj, 10, 0, 0, 0, 0))
+print("0-1 배낭문제(분기 한정):", knapSack_bnb(obj, W, 0, 0, 0, 0))
