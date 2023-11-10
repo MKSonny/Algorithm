@@ -1,22 +1,12 @@
-def is_safe(maze, x, y, mark):
-    W, H = len(maze[0]), len(maze)
-    if x >= 0 and x < W and y >= 0 and y < H:
+def isSafe(x, y, maze, mark):
+    if x >= 0 and x < len(maze[0]) and y >=0 and y < len(maze):
         if maze[y][x] != 0 and mark[y][x] == 0:
             return True
     return False
 
-def find_way(maze, x, y):
-    W, H = len(maze[0]), len(maze)
-    sol = [[0 for _ in range(W)] for _ in range(H)]
-    mark = [[0 for _ in range(W)] for _ in range(H)]
-    if dfs(maze, x, y, sol, mark) == False:
-        print("길을 찾을 수 없습니다.")
-    else:
-        for i in sol:
-            print(i)
-
 def dfs(maze, x, y, sol, mark):
-    if not is_safe(maze, x, y, mark):
+
+    if not isSafe(x, y, maze, mark):
         return False
 
     sol[y][x] = 1
@@ -34,8 +24,6 @@ def dfs(maze, x, y, sol, mark):
     if dfs(maze, x, y - 1, sol, mark):
         return True
 
-    # 내 주변의 3방향을 모두 탐색했는데 아니면
-    # 나를 0으로 초기화
     sol[y][x] = 0
     return False
 
@@ -51,4 +39,12 @@ maze = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 ]
 
-find_way(maze, 3, 0)
+sol = [[0 for _ in range(len(maze[0]))] for _ in range(len(maze))]
+mark = [[0 for _ in range(len(maze[0]))] for _ in range(len(maze))]
+
+# for i in sol:
+#     print(i)
+
+print(dfs(maze, 3, 0, sol, mark))
+for i in sol:
+    print(i)
