@@ -3,12 +3,12 @@ def DFS_permutation(data, sol, level, bUsed):
         print(sol)
         return
 
-    if bUsed[level] == True:
-        return
-
     for i in range(len(data)):
-        bUsed[i] = True
-        sol.append(data[i])
-        DFS_permutation(data, sol, level + 1, bUsed)
-        bUsed[i] = False
-        sol.pop()
+        if not bUsed[i]:
+            bUsed[i] = True
+            sol.append(data[i])
+            DFS_permutation(data, sol, level + 1, bUsed)
+            bUsed[i] = False
+            sol.pop()
+
+DFS_permutation(list('ABC'), [], 0, [False] * 3)
