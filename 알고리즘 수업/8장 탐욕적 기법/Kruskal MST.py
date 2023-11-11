@@ -88,6 +88,7 @@ def MSTKruskal(V, adj):
                 break
 
     print('set_size', dsets.set_size)
+    print('final', dsets.parent)
 
 
 vertex = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
