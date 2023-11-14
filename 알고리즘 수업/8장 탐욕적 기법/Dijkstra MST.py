@@ -25,7 +25,6 @@ def shortest_path_dijkstra(vtx, adj, start):
     dist = list(adj[start])
     dist[start] = 0
     path = [start] * vsize
-    # visited
     found = [False] * vsize
     found[start] = True
 
