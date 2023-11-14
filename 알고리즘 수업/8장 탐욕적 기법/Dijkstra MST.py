@@ -10,6 +10,16 @@ weight = [
     [INF, INF, INF, 4, 5, INF, 0]
 ]
 
+# https://www.youtube.com/watch?v=pVfj6mxhdMw
+# vertex = ['A', 'B', 'C', 'D', 'E']
+# weight = [
+#     [0, 6, INF, 1, INF],
+#     [6, 0, 5, 2, 2],
+#     [INF, 5, 0, INF, 5],
+#     [1, 2, INF, 0, 1],
+#     [INF, 2, 5, 1, 0],
+# ]
+
 def getMinVertex(dist, selected):
     minv = -1
     mindist = INF
@@ -25,10 +35,9 @@ def shortest_path_dijkstra(vtx, adj, start):
     dist = list(adj[start])
     dist[start] = 0
     path = [start] * vsize
+    # found == selected
     found = [False] * vsize
     found[start] = True
-
-    # print('dist', dist)
 
     for i in range(vsize):
         print("Step%2d: " % (i + 1), dist)
