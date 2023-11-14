@@ -18,6 +18,10 @@ weight = [
 #     [INF, 2, 5, 1, 0],
 # ]
 
+# prim: [0, 2, 4, 2, 3, 6, 4]
+# mst: 간선들의 비용 최소화
+# dijkstra: [0, 5, 9, 11, 3, 10, 8]
+
 def getMinVertex(dist, selected):
     min = INF
     min_v = -1

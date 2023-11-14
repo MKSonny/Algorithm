@@ -54,10 +54,12 @@ def shortest_path_dijkstra(vtx, adj, start):
         # 즉, w는 u와 직접 연결된 노드 중에서 최단 경로를 찾고자 하는 노드입니다.
         for w in range(vsize):
             # 가장 싼 비용이 아닌 것과 현재 시작 점이 아닌 것 중에서
+            # 11.14 방문한 지점이 아니라면
             if found[w] == False:
                 # dist[u] -> 현재 내가 찾은 가장 짧은 비용
                 # adj[u][w] -> 내가 찾은 가장 짧은 간선을 제외한 다른 간선들로 갔을 때의 경우들
-                # dist[w] ->
+
+                # dist[w]: w로 직접 갔을 때보다 adj[u][w]를 통해 경유해서 갔을 때가 더 빠른 경우
                 if dist[u] + adj[u][w] < dist[w]:
                     dist[w] = dist[u] + adj[u][w]
                     path[w] = u
