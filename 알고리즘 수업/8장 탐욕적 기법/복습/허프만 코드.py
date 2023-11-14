@@ -1,11 +1,10 @@
 import heapq
 
-def make_heap_tree(freq, label):
-    n = len(freq)
+def huff_code(label, freq):
     h = []
+    n = len(freq)
 
     for i in range(n):
-        # freq[i]를 기준으로 정렬된다.
         heapq.heappush(h, (freq[i], label[i]))
 
     for i in range(1, n):
@@ -16,6 +15,7 @@ def make_heap_tree(freq, label):
 
     print(heapq.heappop(h))
 
+
 label = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
 freq = [24, 3, 8, 10, 33, 6, 4, 12]
-make_heap_tree(freq, label)
+huff_code(label, freq)
