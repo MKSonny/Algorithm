@@ -1,24 +1,24 @@
 INF = 9999
 vertex = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
 weight = [
-    [None, 7, None, None, 3, 10, None],
-    [7, None, 4, 10, 2, 6, None],
-    [None, 4, None, 2, None, None, None],
-    [None, 10, 2, None, 11, 9, 4],
-    [3, 2, None, 11, None, 13, 5],
-    [10, 6, None, 9, 13, None, None],
-    [None, None, None, 4, 5, None, None]
+    [None, 29, None, None, None, 10, None],
+    [29, None, 16, None, None, None, 15],
+    [None, 16, None, 12, None, None, None],
+    [None, None, 12, None, 22, None, 18],
+    [None, None, None, 22, None, 27, 25],
+    [10, None, None, None, 27, None, None],
+    [None, 15, None, 18, 25, None, None]
 ]
+# dijkstra 테스트 weight
 # weight = [
-#     [None, 29, None, None, None, 10, None],
-#     [29, None, 16, None, None, None, 15],
-#     [None, 16, None, 12, None, None, None],
-#     [None, None, 12, None, 22, None, 18],
-#     [None, None, None, 22, None, 27, 25],
-#     [10, None, None, None, 27, None, None],
-#     [None, 15, None, 18, 25, None, None]
+#     [None, 7, None, None, 3, 10, None],
+#     [7, None, 4, 10, 2, 6, None],
+#     [None, 4, None, 2, None, None, None],
+#     [None, 10, 2, None, 11, 9, 4],
+#     [3, 2, None, 11, None, 13, 5],
+#     [10, 6, None, 9, 13, None, None],
+#     [None, None, None, 4, 5, None, None]
 # ]
-
 def select_node(dist, selected):
     min = INF
     min_v = -1
