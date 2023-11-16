@@ -2,7 +2,7 @@ import copy
 
 def shortest_path_floyd(vertex, W):
     vsize = len(vertex)
-    # D0: 아무런 정즘을 거치지 않는 경로
+    # D0: 아무런 정즘을 거치지 않 경로
 
     D = copy.deepcopy(W)
 
