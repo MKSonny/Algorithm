@@ -6,7 +6,7 @@ INF = float('inf')
 def dijkstra(start):
     q = []
     heapq.heappush(q, (0, start))
-    distance[start] = 0
+    distance[start] = 1
 
     while q:
         dist, now = heapq.heappop(q)
