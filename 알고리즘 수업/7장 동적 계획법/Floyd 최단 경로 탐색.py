@@ -6,11 +6,18 @@ def shortest_path_floyd(vertex, W):
 
     D = copy.deepcopy(W)
 
+    # 이렇게 반복하면 A가 경유지가 되는 것 같다.
     for k in range(vsize):
         for i in range(vsize):
             for j in range(vsize):
                 # D[i][k] + D[k][j]: i에서 j로 갈 때 k를 거쳐서 가는 경우
                 # D[i][j]: i에서 j로 바로 가는 경우
+                # print(D[i][k], D[k][j], D[i][j])
+                # 11.19
+                # 첫 반복은 A를 경유지로 설정하고, i는 고정 j는 증가하면..
+                # A -> A + A -> (A ~ G) < A -> (A ~ G)
+                # i = 1
+                # B -> A + A -> (A ~ G) < B -> (A ~ G)
                 if D[i][k] + D[k][j] < D[i][j]:
                     D[i][j] = D[i][k] + D[k][j]
         printD(D)
@@ -28,6 +35,7 @@ def printD(D):
 
 INF = 9999
 vertex = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
+# D[i][k] + D[k][j] < D[i][j]:
 weight = [
     [0, 7, INF, INF, 3, 10, INF],
     [7, 0, 4, 10, 2, 6, INF],
