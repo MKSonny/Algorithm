@@ -6,9 +6,9 @@ def shortest_path_floyd(vertex, W):
 
     D = copy.deepcopy(W)
 
-    for i in range(vsize):
-        for j in range(vsize):
-            for k in range(vsize):
+    for k in range(vsize):
+        for i in range(vsize):
+            for j in range(vsize):
                 # D[i][k] + D[k][j]: i에서 j로 갈 때 k를 거쳐서 가는 경우
                 # D[i][j]: i에서 j로 바로 가는 경우
                 if D[i][k] + D[k][j] < D[i][j]:
