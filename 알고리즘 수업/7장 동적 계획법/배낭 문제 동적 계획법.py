@@ -15,6 +15,10 @@ def knapsack_dp(w, wt, val, n):
                 # i - 1은 이전에 계산했던 row 중에서 내가 현재 물건을 추가시킨다면 남는 공간들 중
                 # 최댓값을 선택하는 것과 동일하다.
                 # result = current_item_value + previous_best_value
+                # 11.19 추가
+                # w - wt[i - 1]: 가방의 무게에서 선택된 것의 무게를 빼면
+                # 만약 w - wt[i - 1] = 2이면 남은 2에 무슨 물건을 놓을 수 있을지
+                # 확인하기 위해 2에서 이전 아이템들을 넣었을 때의 최댓값을 확인한다.
                 valWith = val[i - 1] + A[i - 1][w - wt[i - 1]]
                 print(w - wt[i - 1])
                 valWithout = A[i - 1][w]
