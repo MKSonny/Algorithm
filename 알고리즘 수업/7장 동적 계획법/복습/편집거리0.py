@@ -10,3 +10,7 @@ print(m, n)
 mem = [[None for _ in range(n)] for _ in range(m)]
 
 def edit_distance_mem(S, T, m, n, mem):
+    if m == 0:
+        return n
+    if n == 0:
+        return m
