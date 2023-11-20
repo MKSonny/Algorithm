@@ -11,8 +11,10 @@ mem = [[None for _ in range(n)] for _ in range(m)]
 
 def edit_distance_mem(S, T, m, n, mem):
     # S에서 T로 바꾸려고 한다.
+    # 아무것도 없는 빈문자열에서 T로 만들려면 n번의 삽입 연산이 있어야한다.
     if m == 0:
         return n
+    # S에서 빈문자열을 만들려면 m만큼 삭제해야한다.
     if n == 0:
         return m
 
