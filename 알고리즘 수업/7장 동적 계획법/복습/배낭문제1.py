@@ -14,6 +14,9 @@ def knapsack(w, wt, val, n):
                 valWith = val[i - 1] + A[i - 1][w - wt[i - 1]]
                 valWithout = A[i - 1][w]
                 A[i][w] = max(valWith, valWithout)
+
+    for row in A:
+        print(row)
     return A[n][w]
 
 print(knapsack(w, wt, val, n))
