@@ -1,14 +1,15 @@
-def DFS_permutation(data, sol, level, bUsed):
-    if level == len(data):
+def DFS_permutation(nums, sol, selected):
+    if len(sol) == len(nums):
         print(sol)
         return
 
-    for i in range(len(data)):
-        if not bUsed[i]:
-            bUsed[i] = True
-            sol.append(data[i])
-            DFS_permutation(data, sol, level + 1, bUsed)
-            bUsed[i] = False
+    for i in range(len(nums)):
+        if not selected[i]:
+            selected[i] = True
+            sol.append(nums[i])
+            # print(sol)
+            DFS_permutation(nums, sol, selected)
+            selected[i] = False
             sol.pop()
 
-DFS_permutation(list('ABC'), [], 0, [False] * 3)
+DFS_permutation(list('ABC'), [], [False] * 3)
