@@ -24,6 +24,7 @@ def knapSack_bnb(obj, W, level, weight, profit, maxProfit):
     # 물건을 담는다.
     # 가방에 넣기 전에 만약 넣으면 용량을 초과하는지 검사
     # 여기서 weight 가방안에 들어있는 물건 무게의 총합이다.
+    # 부호 주의 (<=)
     if weight + obj[level][0] <= W:
         newWeight = weight + obj[level][0]
         newProfit = profit + obj[level][1]

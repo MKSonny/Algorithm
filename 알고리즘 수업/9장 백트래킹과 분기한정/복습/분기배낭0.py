@@ -12,9 +12,8 @@ def bound(obj, W, weight, level, profit):
 
     return pBound
 
-def knapsack(obj, W, weight, level, profit):
-    maxProfit = profit
+def knapsack(obj, W, weight, level, profit, maxProfit):
     if level == len(obj):
         return maxProfit
 
-    if obj[level][]
+    if weight + obj[level][0] <= W:
