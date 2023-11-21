@@ -64,6 +64,8 @@ def MSTKruskal(V, adj):
 
     ecount = 0 # 간선의 갯수
 
+    # 반복문 조심 range(n)이 아니라
+    # range(len(E))다.
     for i in range(len(E)):
         e = E[i]
 

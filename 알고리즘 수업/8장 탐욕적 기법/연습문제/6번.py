@@ -6,7 +6,8 @@ weight = [
     [7, None, None, 3, 4],
     [4, None, None, 6, 3],
     [None, 3, 6, None, 5],
-    [2, 4, 3, 5, None]
+    # [2, 4, 3, 5, None]
+    [None, None, None, None, None]
 ]
 
 def getMinVertex(dist, selected):
