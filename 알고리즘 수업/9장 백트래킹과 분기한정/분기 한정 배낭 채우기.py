@@ -8,6 +8,10 @@ def bound(obj, W, level, weight, profit):
         return 0
 
     pBound = profit
+    # 현재 가방에 넣은 것을 제외한 나머지의 한계합
+    # 만약 가방에 넣은 물건이 용량을 초과했다면
+    # 이 함수로 들어왔을때 profit은
+    # 그것을 제외한 profit 이다.
     for j in range(level + 1, len(obj)):
         pBound += obj[j][1]
 
@@ -18,6 +22,8 @@ def knapSack_bnb(obj, W, level, weight, profit, maxProfit):
         return maxProfit
 
     # 물건을 담는다.
+    # 가방에 넣기 전에 만약 넣으면 용량을 초과하는지 검사
+    # 여기서 weight 가방안에 들어있는 물건 무게의 총합이다.
     if weight + obj[level][0] <= W:
         newWeight = weight + obj[level][0]
         newProfit = profit + obj[level][1]
