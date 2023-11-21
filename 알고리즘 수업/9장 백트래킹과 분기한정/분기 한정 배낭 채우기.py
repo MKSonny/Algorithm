@@ -28,11 +28,14 @@ def knapSack_bnb(obj, W, level, weight, profit, maxProfit):
     if weight + obj[level][0] <= W:
         newWeight = weight + obj[level][0]
         newProfit = profit + obj[level][1]
+
+        # 부호주의
         if newProfit > maxProfit:
             maxProfit = newProfit
 
         newBound = bound(obj, W, level, newWeight, newProfit)
         # newBound: 한계합
+        # 부호주의
         if newBound >= maxProfit:
             maxProfit = knapSack_bnb(obj, W, level + 1, newWeight, newProfit, maxProfit)
 

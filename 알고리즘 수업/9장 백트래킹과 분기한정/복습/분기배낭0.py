@@ -17,3 +17,13 @@ def knapsack(obj, W, weight, level, profit, maxProfit):
         return maxProfit
 
     if weight + obj[level][0] <= W:
+        newProfit = profit + obj[level][1]
+        newWeight = profit + obj[level][0]
+
+        if newProfit > maxProfit:
+            maxProfit = newProfit
+
+        newBound = bound(obj, W, newWeight, level, newProfit)
+
+        if newBound >= maxProfit:
+            knapsack(obj, W, newWeight, level + 1, newProfit, maxProfit)
