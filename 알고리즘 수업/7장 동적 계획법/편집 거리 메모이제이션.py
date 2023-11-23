@@ -40,3 +40,13 @@ print(edit_distance_mem(S, T, m, n, mem))
 
 for row in mem:
     print(row)
+
+'''
+[0, 1, 2, 3, None, None, None, None]
+[1, 1, 1, 2, None, None, None, None]
+[2, 2, 2, 2, None, None, None, None]
+[None, None, None, None, 2, None, None, None]
+[None, None, None, None, None, 2, None, None]
+[None, None, None, None, None, None, 2, None]
+[None, None, None, None, None, None, None, 2]
+'''

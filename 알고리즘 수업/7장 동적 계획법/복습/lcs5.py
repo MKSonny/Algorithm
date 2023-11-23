@@ -6,7 +6,7 @@ print("Y =", Y)
 def lcs_track(X, Y, l):
     i = len(X)
     j = len(Y)
-    str = ''
+    str = ""
 
     while i >= 0 and j >= 0:
         v = l[i][j]
@@ -19,13 +19,13 @@ def lcs_track(X, Y, l):
         else:
             i -= 1
 
-    print(str)
+    return str
 
 def lcs(X, Y):
     m = len(X)
     n = len(Y)
 
-    l = [[0 for _ in range(n + 1)] for _ in range(m + 1)]
+    l = [[None for _ in range(n + 1)] for _ in range(m + 1)]
 
     for i in range(m + 1):
         for j in range(n + 1):
@@ -36,7 +36,7 @@ def lcs(X, Y):
             else:
                 l[i][j] = max(l[i - 1][j], l[i][j - 1])
 
-    lcs_track(X, Y, l)
+    print(lcs_track(X, Y, l))
     return l[m][n]
 
 print(lcs(X, Y))
