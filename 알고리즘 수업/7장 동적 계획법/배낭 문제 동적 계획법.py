@@ -24,6 +24,9 @@ def knapsack_dp(w, wt, val, n):
                 valWithout = A[i - 1][w]
                 A[i][w] = max(valWith, valWithout)
         # print()
+
+    for i in A:
+        print(i)
     return A[n][w]
 
 val = [60, 100, 190, 120, 200, 150]
