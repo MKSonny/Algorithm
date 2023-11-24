@@ -1,14 +1,5 @@
 import copy
 
-def shortest_path_floyd(vertex, weight):
-    n = len(vertex)
-    dist = copy.deepcopy(weight)
-    for k in range(n):
-        for i in range(n):
-            for j in range(n):
-                if dist[i][k] + dist[k][j] < dist[i][j]:
-                    dist[i][j] = dist[i][k] + dist[k][j]
-
 INF = 9999
 vertex = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
 # D[i][k] + D[k][j] < D[i][j]:
@@ -22,4 +13,17 @@ weight = [
     [INF, INF, INF, 4, 5, INF, 0]
 ]
 
-shortest_path_floyd(vertex, weight)
+def floyd(vertex, weight):
+    n = len(vertex)
+    dist = copy.deepcopy(weight)
+
+    for k in range(n):
+        for i in range(n):
+            for j in range(n):
+                if dist[i][k] + dist[k][j] < dist[i][j]:
+                    dist[i][j] = dist[i][k] + dist[k][j]
+
+    for i in dist:
+        print(i)
+
+floyd(vertex, weight)
