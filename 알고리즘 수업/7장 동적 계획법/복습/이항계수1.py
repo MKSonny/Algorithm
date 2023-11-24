@@ -7,6 +7,9 @@ def coef(n, k):
             else:
                 c[i][j] = c[i - 1][j - 1] + c[i - 1][j]
 
+    for i in c:
+        print(i)
+
     return c[n][k]
 
-print(coef(4, 2))
+print(coef(4, 1))
