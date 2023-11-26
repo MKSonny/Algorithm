@@ -7,18 +7,16 @@ weight = [
     [4, None, None, 6, 3],
     [None, 3, 6, None, 5],
     # [2, 4, 3, 5, None]
-    [None, None, None, None, None]
+    [2, 4, 3, 5, None]
 ]
 
 def getMinVertex(dist, selected):
     min = INF
     min_v = -1
-
     for i in range(len(dist)):
         if dist[i] < min and not selected[i]:
             min = dist[i]
             min_v = i
-
     return min_v
 
 def prim(vertex, weight):
@@ -34,8 +32,8 @@ def prim(vertex, weight):
             if weight[u][j] != None:
                 if not selected[j] and weight[u][j] < dist[j]:
                     dist[j] = weight[u][j]
+        # print("dist: %s =" % vertex[u], dist)
 
-        print(vertex[u], end=':')
-        print(dist)
+    print(dist)
 
 prim(vertex, weight)
