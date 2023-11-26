@@ -2,15 +2,12 @@ def knapSack_mem(W, wt, val, n, A):
     if A[n][W] == None :
         if n == 0 or W == 0 :
             A[n][W] = 0
-        elif (wt[n-1] > W):
+        elif wt[n-1] > W:
             A[n][W] = knapSack_mem(W, wt, val, n-1, A)
         else:
             valWithout = knapSack_mem(W, wt, val, n-1, A)
             valWith = val[n-1] + knapSack_mem(W-wt[n-1], wt, val, n-1, A)
-            A[n][W] = max(valWith, valWithout)
-
-    for i in A:
-        print(i)
+            A[n][W] = max(valWith, valWithout)\
 
     return A[n][W]
 
@@ -21,4 +18,4 @@ n = len(val)
 
 A = [[None for _ in range(W + 1)] for _ in range(n + 1)]
 
-knapSack_mem(W, wt, val, n, A)
+print(knapSack_mem(W, wt, val, n, A))
