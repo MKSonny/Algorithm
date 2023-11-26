@@ -3,28 +3,34 @@ wt = [3, 2, 1, 4, 5]
 W = 6
 n = len(val)
 
-def knapsack_mem(W, val, wt, n, mem):
+mem = [[None for _ in range(W + 1)] for _ in range(n + 1)]
 
+def knapsack_dp(W, wt, val, n):
+    table = [[0 for _ in range(W + 1)] for _ in range(n + 1)]
+
+    for i in range(1, n + 1):
+        for w in range(1, W + 1):
+            if wt[i - 1] > w:
+                table[i][w] = table[i - 1][w]
+            else:
+                valWith = val[i - 1] + table[i - 1][w - wt[i - 1]]
+                valWithout = table[i - 1][w]
+                table[i][w] = max(valWith, valWithout)
+
+    return table[n][w]
+
+def knapsack_mem(W, wt, val, n, mem):
     if mem[n][W] == None:
-        if W == 0 or n == 0:
+        if n == 0 or W == 0:
             mem[n][W] = 0
         elif wt[n - 1] > W:
-            mem[n][W] = knapsack_mem(W, val, wt, n - 1, mem)
+            mem[n][W] = knapsack_mem(W, wt, val, n - 1, mem)
         else:
-            valWithout = knapsack_mem(W, val, wt, n - 1, mem)
-            valWith = val[n - 1] + knapsack_mem(W - wt[n - 1], val, wt, n - 1, mem)
-            return max(valWith, valWithout)
-
-    for i in mem:
-        print(i)
-    print()
+            valWith = val[n - 1] + knapsack_mem(W - wt[n - 1], wt, val, n - 1, mem)
+            valWithout = knapsack_mem(W, wt, val, n - 1, mem)
+            mem[n][W] = max(valWith, valWithout)
 
     return mem[n][W]
 
-def do_knapsack(W, val, n, wt):
-    mem = [[None for _ in range(W + 1)] for _ in range(n + 1)]
-    a = knapsack_mem(W, val, wt, n, mem)
-
-    return a
-
-print(do_knapsack(W, val, n, wt))
+print(knapsack_mem(W, wt, val, n, mem))
+print(knapsack_dp(W, wt, val, n))
