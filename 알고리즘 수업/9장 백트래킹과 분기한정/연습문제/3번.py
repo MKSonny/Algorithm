@@ -8,7 +8,7 @@ def DFS_sum_of_subsets(S, M, level, sol, remaining):
         return
     if (remaining + sum(sol)) < M:
         print('work')
-        return 
+        return
     if sum(sol) > M:
         return
 
@@ -42,7 +42,7 @@ def DFS_sum_of_subsets(S, M, level, sol, remaining):
         # 어디서?
         sol.pop()
 
-nums = [3, 34, 4, 12, 5, 2]
-M = 9
+nums = [1, 3, 4, 5]
+M = 4
 solution = all_sum_of_subsets(nums, M)
 print("입력 집합:", nums, "M =", M)
