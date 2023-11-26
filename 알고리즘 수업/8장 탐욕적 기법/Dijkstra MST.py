@@ -40,7 +40,7 @@ def shortest_path_dijkstra(vtx, adj, start):
     found[start] = True
 
     for i in range(vsize):
-        print("Step%2d: " % (i + 1), dist)
+        # print("Step%2d: " % (i + 1), dist)
         u = getMinVertex(dist, found)
         # print('u', u)
         # 가장 싼 비용 찾음
@@ -63,6 +63,7 @@ def shortest_path_dijkstra(vtx, adj, start):
                 if dist[u] + adj[u][w] < dist[w]:
                     dist[w] = dist[u] + adj[u][w]
                     path[w] = u
+                    print(path)
 
     return path
 
