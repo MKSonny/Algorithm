@@ -1,7 +1,7 @@
 def printNode(knapsack, level, weight, profit, bound, maxProfit):
     print("%d %-16s : %3.1fkg 가치/한계합 = %5.1f / %5.1f > %5.1f(최고합)"
           %(level, knapsack, weight, profit, bound, maxProfit))
-
+# memo
 
 def calculate_bound(obj, W, level, weight, profit):
     if weight > W:
