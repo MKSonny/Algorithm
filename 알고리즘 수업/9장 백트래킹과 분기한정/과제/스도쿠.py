@@ -35,7 +35,6 @@ def isSafe(board, insert, x, y):
     for i in range(3):
         for j in range(3):
              if board[ny + i][nx + j] == insert:
-                 # print('사각')
                  return False
     return True
 
