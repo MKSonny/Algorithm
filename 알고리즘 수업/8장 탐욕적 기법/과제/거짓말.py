@@ -24,6 +24,7 @@ parent = [-1] * (peoples + 1)
 
 for p in party:
     # p[0] = 2
+    #
     # print('a')
     for i in range(1, p[0]):
         # print('a')
