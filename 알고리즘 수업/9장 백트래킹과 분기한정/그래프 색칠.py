@@ -1,6 +1,5 @@
 states = ['NT', 'WA', 'Q', 'SA', 'NSW', 'V']
 color_name = ["none", "빨강", "초록", "파랑", "노랑", "보라"]
-
 def isSafe(g, v, c, color):
     # v = 0, c = 1
     # color = [0, 0, 0, 0, 0, 0]
