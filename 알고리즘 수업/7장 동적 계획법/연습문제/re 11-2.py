@@ -14,7 +14,7 @@ val = [26, 20, 14, 40, 50]
 wt = [3, 2, 1, 4, 5]
 W = 6
 n = len(val)
-
+#
 mem = [[None for _ in range(W + 1)] for _ in range(n + 1)]
 
 print(knapsack_mem(n, W, mem, wt, val))
