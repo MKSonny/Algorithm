@@ -29,14 +29,14 @@ def knapsack_bnb(obj, knapsack, W, level, weight, profit, maxProfit, bound):
         newBound = calculate_bound(obj, W, level, newWeight, newProfit)
         if newBound >= maxProfit:
             knapsack.append(obj[level][2])
-            maxProfit = knapsack_bnb(obj, knapsack, W, level + 1, newWeight, newProfit, maxProfit, bound)
+            maxProfit = knapsack_bnb(obj, knapsack, W, level + 1, newWeight, newProfit, maxProfit, newBound)
             knapsack.pop()
 
     newWeight = weight
     newProfit = profit
     newBound = calculate_bound(obj, W, level, newWeight, newProfit)
     if newBound >= maxProfit:
-        maxProfit = knapsack_bnb(obj, knapsack, W, level + 1, newWeight, newProfit, maxProfit, bound)
+        maxProfit = knapsack_bnb(obj, knapsack, W, level + 1, newWeight, newProfit, maxProfit, newBound)
 
     return maxProfit
 

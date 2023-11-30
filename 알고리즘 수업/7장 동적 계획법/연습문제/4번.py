@@ -9,6 +9,8 @@ def bino_coef(n, k, mem):
 def do_bino_coef(n, k):
     mem = [[None for _ in range(k + 1)] for _ in range(n + 1)]
 
-    return bino_coef(n, k, mem)
+    bino_coef(n, k, mem)
+    for i in mem:
+        print(i)
 
 print(do_bino_coef(4, 2))
