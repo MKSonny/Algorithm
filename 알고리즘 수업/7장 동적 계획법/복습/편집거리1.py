@@ -3,26 +3,23 @@ T = "thursday"
 m = len(S)
 n = len(T)
 
-mem = [[None] * n for _ in range(m)]
+mem = [[None for _ in range(n + 1)] for _ in range(m + 1)]
 
 def edit_distance(S, T, m, n, mem):
-    if m == 0:
-        return n
-    if n == 0:
-        return m
+    if mem[m][n] == None:
+        if m == 0:
+            return n
+        if n == 0:
+            return m
 
-    if S[m - 1] == T[n - 1]:
-        mem[m - 1][n - 1] = edit_distance(S, T, m - 1, n - 1, mem)
-    else:
-        mem[m - 1][n - 1] = min(
-            edit_distance(S, T, m - 1, n - 1, mem),
-            edit_distance(S, T, m, n - 1, mem),
-            edit_distance(S, T, m - 1, n, mem)
-        ) + 1
-
-    return mem[m - 1][n - 1]
+        if S[m - 1] == T[n - 1]:
+            mem[m][n] = edit_distance(S, T, m - 1, n - 1, mem)
+        else:
+            mem[m][n] = min(
+                edit_distance(S, T, m - 1, n - 1, mem),
+                edit_distance(S, T, m, n - 1, mem),
+                edit_distance(S, T, m, n - 1, mem)
+            ) + 1
+    return mem[m][n]
 
 print(edit_distance(S, T, m, n, mem))
-
-for i in mem:
-    print(i)
