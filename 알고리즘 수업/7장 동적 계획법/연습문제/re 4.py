@@ -11,4 +11,5 @@ def do_coef_mem(n, k):
     mem = [[None for _ in range(k + 1)] for _ in range(n + 1)]
     return coef_mem(n, k, mem)
 
-print(do_coef_mem(4, 2))
+n, k = map(int, input().split())
+print(do_coef_mem(n, k))
