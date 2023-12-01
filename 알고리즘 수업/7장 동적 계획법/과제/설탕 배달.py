@@ -7,6 +7,7 @@ bag_5kg = 5
 
 
 def to_knapsack_dp(wt, n):
+    knapsack = []
     A = [[0 for _ in range(n + 1)] for _ in range(2 + 1)]
     count_3 = 0
     count_5 = 0
@@ -26,9 +27,10 @@ def to_knapsack_dp(wt, n):
 
                 for_count = max(valWith, valWithout)
                 A[i][w] = for_count
-
-    if A[2][n] != n:
-        return -1
+# 3 2
+# 5 1
+#     if A[2][n] != n:
+#         return -1
 
     for i in A:
         print(i)
