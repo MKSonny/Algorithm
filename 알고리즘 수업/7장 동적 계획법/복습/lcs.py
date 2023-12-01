@@ -1,36 +1,43 @@
-string_a = list("HELLO WORLD")
-string_b = list("GAME OVER")
+X = "GAME OVER"
+Y = "HELLO WORLD"
 
-def lcs(a, b):
-    mem = [[0 for _ in range(len(a) + 1)] for _ in range(len(b) + 1)]
+def lcs_track(X, Y, mem):
+    i = len(X)
+    j = len(Y)
+    same_str = ""
 
-    for i in range(len(b) + 1):
-        for j in range(len(a) + 1):
+    while i >= 0 and j >= 0:
+        v = mem[i][j]
+        if v > mem[i - 1][j - 1] and v > mem[i - 1][j] and v > mem[i][j - 1]:
+            i -= 1
+            j -= 1
+            same_str = X[i] + same_str
+        elif v > mem[i - 1][j] and v == mem[i][j - 1]:
+            j -= 1
+        else:
+            i -= 1
+
+    return same_str
+
+
+def lcs(X, Y):
+    m = len(X)
+    n = len(Y)
+
+    mem = [[0 for _ in range(n + 1)] for _ in range(m + 1)]
+
+    for i in range(m + 1):
+        for j in range(n + 1):
             if i == 0 or j == 0:
                 mem[i][j] = 0
-            elif b[i - 1] == a[j - 1]:
+            if X[i - 1] == Y[j - 1]:
                 mem[i][j] = mem[i - 1][j - 1] + 1
             else:
-                mem[i][j] = max(mem[i - 1][j], mem[i][j - 1])
-    return mem
+                mem[i][j] = max(
+                    mem[i - 1][j], mem[i][j - 1]
+                )
 
-def track(a, b, mem):
-    same = ''
-    n = len(a) - 1
-    m = len(b) - 1
-    while n > 0 and m > 0:
-        if mem[n][m] > mem[n - 1][m] and mem[n][m] > mem[n][m - 1]:
-            same += a[n]
-            n -= 1
-            m -= 1
-        elif mem[n][m] == mem[n][m - 1]:
-            m -= 1
-        elif mem[n][m] == mem[n - 1][m]:
-            n -= 1
-        print(same)
+    print(lcs_track(X, Y, mem))
+    return mem[m][n]
 
-mem = lcs(string_a, string_b)
-for i in mem:
-    print(i)
-print(mem[len(string_b)][len(string_a)])
-# track(string_a, string_b, mem)
+print(lcs(X, Y))

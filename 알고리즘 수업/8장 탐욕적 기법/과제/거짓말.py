@@ -1,42 +1,27 @@
-class disJointSet:
-    def __init__(self, n):
-        self.parent = [-1] * n
-        self.set_size = n
+n, m = map(int, input().split())
 
-    def find(self, id):
-        while self.parent[id] >= 0:
-            id = self.parent[id]
-        return id
+who_knows = list(map(int, input().split()))
+who_knows = set(who_knows[1:])
 
-    def union(self, s1, s2):
-        self.parent[s1] = s2
-        self.set_size -= 1
+parties = []
 
-peoples, parties = map(int, input().split())
-who_knows_truth = list(map(int, input().split()))
-print(who_knows_truth[1:])
-party = []
+for i in range(m):
+    names = list(map(int, input().split()))
+    parties.append(set(names[1:]))
 
-for i in range(parties):
-    party.append(list(map(int, input().split())))
-
-parent = [-1] * (peoples + 1)
-
-for p in party:
-    # p[0] = 2
-    #
-    # print('a')
-    for i in range(1, p[0]):
-        # print('a')
-        for j in range(i + 1, p[0] + 1):
-            parent[p[i]] = p[j]
+for _ in range(m):
+    for party in parties:
+        if party & who_knows:
+            # 어떤 파티에 진실을 알고 있는 사람과
+            # 진실을 몰랐던 사람이 있다면
+            # 진실을 몰랐던 사람은 진실을 알게 되는 것과 같은 것
+            who_knows = who_knows.union(party)
 
 cnt = 0
 
-for p in party:
-    for e in p:
-        if parent[e] in who_knows_truth[1:]:
-            cnt += 1
-            # print('a')
+for party in parties:
+    if party & who_knows:
+        continue
+    cnt += 1
 
-print(len(party) - cnt)
+print(cnt)
