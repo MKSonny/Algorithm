@@ -12,7 +12,7 @@ W, H = len(board[0]), len(board)
 
 dist = [[INF for _ in range(W)] for _ in range(H)]
 
-dist[0][0] = 0
+dist[0][0] = 5
 
 for i in dist:
     print(i)
@@ -29,8 +29,11 @@ def find_can_go(board, x, y):
         ny = y + dy[i]
 
         if nx >= 0 and nx < W and ny >= 0 and ny < H:
-            dist[ny][nx] = board[y][x]  + board[ny][nx]
+            dist[ny][nx] = dist[y][x] + board[ny][nx]
             can_go.append((ny, nx))
+
+    for i in dist:
+        print(i)
 
     return can_go
 
