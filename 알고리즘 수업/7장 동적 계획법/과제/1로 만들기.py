@@ -1,18 +1,15 @@
 n = int(input())
 
-mem = [None] * (n + 1)
+mem = [0] * (n + 1)
 
 def make_1(mem, m):
-    if mem[m] is None:
-        if m == 0 or m == 1:
-            mem[m] = 0
-        else:
-            mem[m] = make_1(mem, m - 1) + 1
-            if m % 3 == 0:
-                mem[m] = min(mem[m], make_1(mem, m // 3) + 1)
-            if m % 2 == 0:
-                mem[m] = min(mem[m], make_1(mem, m // 2) + 1)
-
+    for i in range(1, m + 1):
+        if i - 1 != 0:
+            mem[i] = mem[i - 1] + 1
+        if i % 3 == 0:
+            mem[i] = min(mem[i], mem[i // 3] + 1)
+        if i % 2 == 0:
+            mem[i] = min(mem[i], mem[i // 2] + 1)
     return mem[m]
 
 print(make_1(mem, n))
