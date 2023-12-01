@@ -25,7 +25,4 @@ for _ in range(T):
             else:
                 apart[i][j] = sum(apart[i - 1][:j + 1])
 
-    for i in apart:
-        print(i)
-
     print(apart[n][m - 1])

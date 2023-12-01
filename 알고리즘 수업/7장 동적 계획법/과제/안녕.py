@@ -1,9 +1,4 @@
-wt = [1, 21, 79]
-val = [20, 30, 25]
-W = 100
-n = len(val)
-
-def knapsack(val, wt, W, n):
+def hi(val, wt, W, n):
     table = [[0 for _ in range(W)] for _ in range(n + 1)]
 
     for i in range(1, n + 1):
@@ -20,8 +15,6 @@ def knapsack(val, wt, W, n):
 n = int(input())
 hp = list(map(int, input().split()))
 happy = list(map(int, input().split()))
+total_hp = 100
 
-# print('hp', hp)
-# print('happy', happy)
-
-print(knapsack(happy, hp, W, n))
+print(hi(happy, hp, total_hp, n))
