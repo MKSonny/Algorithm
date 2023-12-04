@@ -64,7 +64,7 @@ def shortest_path_dijkstra(vtx, adj, start):
                     dist[w] = dist[u] + adj[u][w]
                     path[w] = u
                     print(path)
-
+    print('dist:', dist)
     return path
 
 print("Shortest Path By Dijkstra Algorithm")
