@@ -12,6 +12,7 @@ def knapsack(obj, W):
             wp = W / o[1]
             profit += wp * o[2]
             W = int(W - (o[1] * wp))
+            ##
     print(profit)
 
 knapsack(obj, W)
