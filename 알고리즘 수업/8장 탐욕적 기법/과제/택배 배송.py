@@ -1,6 +1,6 @@
 n, m = map(int, input().split())
 
-INF = 9999
+INF = 99999999
 
 # weight = [[INF for _ in range(n)] for _ in range(n)]
 weight = [[] for _ in range(n)]
