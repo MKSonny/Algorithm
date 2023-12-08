@@ -27,6 +27,7 @@ def knapsack_bnb(obj, knapsack, W, level, weight, profit, maxProfit, bound):
             maxProfit = newProfit
 
         newBound = calculate_bound(obj, W, level, newWeight, newProfit)
+
         if newBound >= maxProfit:
             knapsack.append(obj[level][2])
             maxProfit = knapsack_bnb(obj, knapsack, W, level + 1, newWeight, newProfit, maxProfit, newBound)
