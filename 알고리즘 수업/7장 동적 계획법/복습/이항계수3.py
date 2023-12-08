@@ -12,9 +12,10 @@ def coef(n, k):
             # table[0][0] = table[-1][-1] + table[-1][0]
             # table[0][0] = 0 + 0
             # 으로 값이 초기화되어 답이 안나온다.
-            table[i][j] = table[i - 1][j - 1] + table[i - 1][j]
-
-    print(table[-1][-1])
+            else:
+                table[i][j] = table[i - 1][j - 1] + table[i - 1][j]
+    for i in table:
+        print(i)
     return table[n][k]
 
 print(coef(4, 2))
