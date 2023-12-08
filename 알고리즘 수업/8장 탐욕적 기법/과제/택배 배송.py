@@ -3,18 +3,13 @@ n, m = map(int, input().split())
 INF = 9999
 
 # weight = [[INF for _ in range(n)] for _ in range(n)]
-weight = []
+weight = [[] for _ in range(n)]
 
 for _ in range(m):
     start, end, t_weight = map(int, input().split())
-    weight.append((start, end, t_weight))
-    # weight[start - 1][end - 1] = t_weight
-    # weight[end - 1][start - 1] = t_weight
+    weight[start - 1].append((end - 1, t_weight))
+    weight[end - 1].append((start - 1, t_weight))
 
-for i in weight:
-    print(i)
-
-'''
 
 def getMinVertex(dist, selected):
     min = INF
@@ -33,12 +28,12 @@ def dijkstra(weight):
     for i in range(n):
         u = getMinVertex(dist, selected)
         selected[u] = True
-        for j in range(n):
-            if not selected[j]:
-                if dist[u] + weight[u][j] < dist[j]:
-                    dist[j] = dist[u] + weight[u][j]
+        edges = weight[u]
+        for edge in edges:
+            if not selected[edge[0]]:
+                if dist[u] + edge[1] < dist[edge[0]]:
+                    dist[edge[0]] = dist[u] + edge[1]
 
     print(dist[n - 1])
 
 dijkstra(weight)
-'''
