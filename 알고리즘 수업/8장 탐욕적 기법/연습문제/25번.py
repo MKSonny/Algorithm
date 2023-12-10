@@ -1,7 +1,12 @@
 import heapq
 
-val = ['A', 'B', 'C', 'D', 'E']
-freq = [0.4, 0.1, 0.2, 0.15, 0.15]
+val = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
+freq = [24, 3, 8, 10, 33, 6, 4, 12]
+
+'''
+label = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
+freq = [24, 3, 8, 10, 33, 6, 4, 12]
+'''
 
 def build_huffman_tree(val, freq):
     n = len(val)
