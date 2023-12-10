@@ -37,7 +37,7 @@ def lcs_dp_traceback(X, Y, L):
 
     return lcs
 
-X = "GAME OVER"
+Xr = "GAME OVER"
 Y = "HELLO WORLD"
 print("X =", X)
 print("Y =", Y)
