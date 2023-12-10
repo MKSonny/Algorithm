@@ -81,11 +81,11 @@ path = shortest_path_dijkstra(vertex, weight, start)
 
 print('path', path)
 
-# for end in range(len(vertex)):
-#     if end != start:
-#         print("[최단경로: %s -> %s] %s" % (vertex[start], vertex[end], vertex[end]), end='')
-#         while path[end] != start:
-#             print(" <- %s" % vertex[path[end]], end='')
-#             end = path[end]
-#
-#     print(" <- %s" % vertex[path[end]])
+for end in range(len(vertex)):
+    if end != start:
+        print("[최단경로: %s -> %s] %s" % (vertex[start], vertex[end], vertex[end]), end='')
+        while path[end] != start:
+            print(" <- %s" % vertex[path[end]], end='')
+            end = path[end]
+
+    print(" <- %s" % vertex[path[end]])
