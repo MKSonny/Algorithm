@@ -18,35 +18,3 @@ def getMinVertex(dist, selected):
             min = dist[i]
             min_v = i
     return min_v
-
-def dijkstra(vertex, weight):
-    n = len(vertex)
-    dist = [INF] * n
-    path = [-1] * n
-    selected = [False] * n
-    dist[0] = 0
-
-    for i in range(n):
-        u = getMinVertex(dist, selected)
-        selected[u] = True
-        for j in range(n):
-            if dist[u] + weight[u][j] < dist[j] and not selected[j]:
-                dist[j] = dist[u] + weight[u][j]
-                path[j] = u
-
-    print(path)
-
-    start = 0
-    for end in range(len(vertex)):
-        if end != start:
-            print("[최단경로: %s->%s] %s" %
-                  (vertex[start], vertex[end], vertex[end]), end='')
-            while (path[end] != start):
-                print(" <- %s" % vertex[path[end]], end='')
-                end = path[end]
-            print(" <- %s" % vertex[path[end]])
-
-    print(dist)
-
-#dist: [0, 5, 9, 11, 3, 10, 8]
-dijkstra(vertex, weight)
