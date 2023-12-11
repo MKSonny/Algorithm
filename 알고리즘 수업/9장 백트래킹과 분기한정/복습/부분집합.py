@@ -1,17 +1,14 @@
-nums = [3, 34, 4, 12, 5, 2]
+nums = [1, 2, 3, 4]
 M = 9
 
-def combination(M, sol, nums, level, remaining):
-    if sum(sol) == M:
-        print(sol)
-        return
-
-    if sum(sol) + remaining < M or sum(sol) > M:
+def combination(nums, sol, level):
+    if len(sol) == len(nums):
         return
 
     for i in range(level, len(nums)):
         sol.append(nums[i])
-        combination(M, sol, nums, i + 1, remaining - nums[i])
+        print(sol)
+        combination(nums, sol, i + 1)
         sol.pop()
 
-combination(M, [], nums, 0, sum(nums))
+combination(nums, [], 0)
