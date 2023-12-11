@@ -32,6 +32,7 @@ def edit_distance_table(X, Y):
         for j in range(n + 1):
             if i == 0:
                 mem[i][j] = j
+            # 여기서 조건문 사용 주의
             elif j == 0:
                 mem[i][j] = i
             elif X[i - 1] == Y[j - 1]:
