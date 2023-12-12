@@ -46,3 +46,12 @@ for end in range(len(vertex)):
             print(" <- %s" % vertex[path[end]], end="")
             end = path[end]
         print(" <- %s" % vertex[path[end]])
+
+'''
+[최단경로: A -> B] B <- E <- A
+[최단경로: A -> C] C <- B <- E <- A
+[최단경로: A -> D] D <- C <- B <- E <- A
+[최단경로: A -> E] E <- A
+[최단경로: A -> F] F <- A
+[최단경로: A -> G] G <- E <- A
+'''
