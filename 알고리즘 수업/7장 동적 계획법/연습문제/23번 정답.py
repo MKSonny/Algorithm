@@ -2,25 +2,26 @@ X = "hello world"
 Y = "game over"
 
 def track(X, Y, mem):
-    i = len(X)
-    j = len(Y)
+    i = len(X) - 1
+    j = len(Y) - 1
 
-    while i > 0 and j > 0:
-        s = min(mem[i - 1][j - 1], mem[i][j - 1], mem[i - 1][j])
+    while i >= 0 and j >= 0:
+        s = min(mem[i - 1][j - 1] or float('inf'), mem[i][j - 1] or float('inf'), mem[i - 1][j] or float('inf'))
 
         if s == mem[i][j]:
             i -= 1
             j -= 1
-        elif s == mem[i - 1][j]:
-            print("%s 삭제" % X[i - 1])
-            i -= 1
-        elif s == mem[i][j - 1]:
-            print("%s 삽입" % Y[j - 1])
-            j -= 1
         else:
-            print("%s -> %s로 교체" % (X[i - 1], Y[j - 1]))
-            i -= 1
-            j -= 1
+            if s == mem[i - 1][j]:
+                print("%s 삭제" % X[i])
+                i -= 1
+            elif s == mem[i][j - 1]:
+                print("%s 삽입" % Y[j])
+                j -= 1
+            else:
+                print("%s -> %s로 교체" % (X[i], Y[j]))
+                i -= 1
+                j -= 1
 
 def edit_distance_table(X, Y):
     m = len(X)
@@ -42,6 +43,9 @@ def edit_distance_table(X, Y):
                     mem[i - 1][j], mem[i - 1][j - 1], mem[i][j - 1]
                 ) + 1
 
+    # for i in mem:
+    #     print(i)
+
     track(X, Y, mem)
 
     return mem[m][n]
@@ -52,21 +56,27 @@ def edit_distance(X, Y, mem, m, n):
     if n == 0:
         return m
 
-    if mem[m][n] == None:
+    if mem[m - 1][n - 1] == None:
         if X[m - 1] == Y[n - 1]:
-            mem[m][n] = edit_distance(X, Y, mem, m - 1, n - 1)
+            mem[m - 1][n - 1] = edit_distance(X, Y, mem, m - 1, n - 1)
         else:
-            mem[m][n] = min(
+            mem[m - 1][n - 1] = min(
                 edit_distance(X, Y, mem, m - 1, n - 1),
                 edit_distance(X, Y, mem, m, n - 1), # 삽입
                 edit_distance(X, Y, mem, m - 1, n) # 삭제
             ) + 1
 
-    return mem[m][n]
+    print("================")
+    for i in mem:
+        print(i)
+
+
+
+    return mem[m - 1][n - 1]
 
 m = len(X)
 n = len(Y)
-mem = [[None for _ in range(n + 1)] for _ in range(m + 1)]
+mem = [[None for _ in range(n)] for _ in range(m)]
 print(edit_distance(X, Y, mem, len(X), len(Y)))
-print(edit_distance_table(X, Y))
-# track(X, Y, mem)
+# print(edit_distance_table(X, Y))
+track(X, Y, mem)
