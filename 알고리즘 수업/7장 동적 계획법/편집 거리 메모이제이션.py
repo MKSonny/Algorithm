@@ -38,8 +38,10 @@ def edit_distance_mem(S, T, m, n, mem):
 
 print(edit_distance_mem(S, T, m, n, mem))
 
-# for row in mem:
-#     print(row)
+for i in range(len(mem)):
+    for j in range(len(mem[0])):
+        print("%-5s" % mem[i][j], end='')
+    print()
 
 '''
 [0, 1, 2, 3, None, None, None, None]
