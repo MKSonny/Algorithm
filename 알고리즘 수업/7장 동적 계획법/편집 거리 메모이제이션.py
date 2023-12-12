@@ -29,17 +29,17 @@ def edit_distance_mem(S, T, m, n, mem):
             그 이유는 m 이전에 T에 있는 하나의 문자를 S에 삽입시킨다 생각하므로
             S는 T와 일치하는게 하나 발생하므로 n은 하나를 줄이지만 아직 m은 해결되지 않았다.
             '''
-            mem[m - 1][n - 1] = min(edit_distance_mem(S, T, m - 1, n - 1, mem),
-                                    edit_distance_mem(S, T, m, n - 1, mem),
-                                    edit_distance_mem(S, T, m - 1, n, mem)) + 1
+            mem[m - 1][n - 1] = min(edit_distance_mem(S, T, m, n - 1, mem),
+                                    edit_distance_mem(S, T, m - 1, n, mem),
+                                    edit_distance_mem(S, T, m - 1, n - 1, mem)) + 1
         print("mem[%d][%d] = " % (m - 1, n - 1), mem[m - 1][n - 1])
 
     return mem[m - 1][n - 1]
 
 print(edit_distance_mem(S, T, m, n, mem))
 
-for row in mem:
-    print(row)
+# for row in mem:
+#     print(row)
 
 '''
 [0, 1, 2, 3, None, None, None, None]

@@ -34,14 +34,13 @@ def printD(D):
         print("")
 
 INF = 9999
-vertex = ['A', 'B', 'C', 'D', 'E']
-# D[i][k] + D[k][j] < D[i][j]:
+vertex = ['A', 'B', 'C', 'D', 'E', 'F']
 weight = [
     [0, 7, 9, INF, INF, 14],
     [7, 0, 10, 15, INF, INF],
     [9, 10, 0, 11, INF, INF],
     [INF, 15, 11, 0, 6, INF],
-    [INF, 15, 11, 6, 0, 9],
+    [INF, INF, INF, 6, 0, 9],
     [14, INF, INF, INF, 9, 0]
 ]
 print("Shortest Path By Floyd's Alogorithm")
