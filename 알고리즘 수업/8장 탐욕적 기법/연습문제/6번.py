@@ -32,7 +32,7 @@ def prim(vertex, weight):
             if weight[u][j] != None:
                 if not selected[j] and weight[u][j] < dist[j]:
                     dist[j] = weight[u][j]
-        # print("dist: %s =" % vertex[u], dist)
+        print("dist: %s =" % vertex[u], dist)
 
     print(dist)
 

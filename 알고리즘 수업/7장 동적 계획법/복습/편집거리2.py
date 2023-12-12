@@ -9,21 +9,21 @@ def track(X, Y, mem):
     j = len(Y) - 1
 
     while i > 0 and j > 0:
-        s = min(mem[i - 1][j - 1], mem[i][j - 1], mem[i - 1][j])
-
+        s = min(mem[i - 1][j], mem[i - 1][j - 1], mem[i][j - 1])
         if s == mem[i][j]:
             i -= 1
             j -= 1
-        elif s == mem[i - 1][j]:
-            print("%s 삭제" % X[i - 1])
-            i -= 1
-        elif s == mem[i][j - 1]:
-            print("%s 삽입" % Y[j - 1])
-            j -= 1
         else:
-            print("%s -> %s로 교체" % (X[i - 1], Y[j - 1]))
-            i -= 1
-            j -= 1
+            if s == mem[i][j - 1]:
+                print("%s 삽입" % Y[j - 1])
+                j -= 1
+            elif s == mem[i - 1][j - 1]:
+                print("%s -> %s 교체" %(X[i - 1], Y[j - 1]))
+                i -= 1
+                j -= 1
+            else:
+                print("%s 삭제" % X[i - 1])
+                i -= 1
 
 
 def edit_distance_table(X, Y):
@@ -73,4 +73,8 @@ def edit_distance(X, Y, mem, m, n):
 
 mem = [[None for _ in range(n)] for _ in range(m)]
 edit_distance(X, Y, mem, m, n)
-edit_distance_table(X, Y)
+for i in range(m):
+    for j in range(n):
+        print("%3s " % mem[i][j], end='')
+    print()
+track(X, Y, mem)
