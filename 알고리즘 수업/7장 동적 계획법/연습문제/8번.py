@@ -15,7 +15,7 @@ def knapsack(wt, val, W):
                 mem[i][w] = max(valWith, valWithout)
 
     for i in range(len(mem)):
-        for j in range(len(mem[0])):
+        for j in range(len(mem[0])):#
             print("%3d" % mem[i][j], end = ' ')
         print()
 
