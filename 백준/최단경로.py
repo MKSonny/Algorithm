@@ -27,8 +27,8 @@ while len(h) != 0:
     # k[0]는 목적지
     # print(w, start_point)
     # if dist[v1]
-    if w > dist[start_point]:
-        continue
+    # if w > dist[start_point]:
+    #     continue
     for k in node[start_point]:
         # print(k)
         # 2 + 5 < 3
