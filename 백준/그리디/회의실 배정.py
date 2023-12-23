@@ -7,7 +7,7 @@ h = []
 
 for _ in range(n):
     a, b = map(int, input().split())
-    h.append((a, b))
+    h.append((a, b))#d
 
 h.sort(key=lambda o:o[1])
 
