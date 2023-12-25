@@ -6,7 +6,7 @@ n = int(input())
 
 board = [[0 for _ in range(n)] for _ in range(n)]
 
-def isSafe(board, y, x):
+def isSafe(board, y, x):#
     for i in range(y):
         if board[i][x] == 1:
             return False
