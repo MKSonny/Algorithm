@@ -1,5 +1,5 @@
 data = [1, 3, 8, 13, 13, 16, 21, 26, 27, 30, 33, 36, 39, 41, 44, 49]
-
+#
 def binary_search(data, left, right, find):
 
     mid = (left + right) // 2
