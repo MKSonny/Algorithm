@@ -27,7 +27,7 @@ def move(l, y, x, sol, mark):
 
     sol.append(l[y][x])
     print(sol)
-    # mark[y][x] = 1
+    # mark[y][x] = 1 ㅏ
 
     if max_len < len(sol):
         max_len = len(sol)
