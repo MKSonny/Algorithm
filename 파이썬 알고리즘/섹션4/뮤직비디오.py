@@ -12,6 +12,8 @@ l = list(map(int, input().split()))
 lt = l[0]
 rt = sum(l)
 
+maxx = max(l)
+
 def binary_cnt(l, lt, rt, key):
     min = 0
     while lt <= rt:
@@ -29,7 +31,7 @@ def binary_cnt(l, lt, rt, key):
         total += 1
         # print(total)
 
-        if total <= key:
+        if mid >= maxx and total <= key:
             min = mid
             rt = mid - 1
         else:
