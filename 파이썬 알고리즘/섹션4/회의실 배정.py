@@ -14,7 +14,7 @@ for _ in range(n):
     a, b = map(int, input().split())
     l.append((a, b))
 
-# o[1]: 끝나는 시간이 같다면 o[0]을 기준으로 정렬
+# o[1]: 끝나는 시간이 같다면 o[0]을 기준으로 정렬ㅁ
 l.sort(key=lambda o:(o[1], o[0]))
 
 ep = l[0][1]
