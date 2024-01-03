@@ -8,6 +8,7 @@ n = int(input())
 5 4 3 2 1
 1 7 5 2 4
 '''
+#
 
 l = []
 for _ in range(n):
