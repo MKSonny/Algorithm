@@ -5,7 +5,7 @@ l = []
 for i in range(n):
     day, val = map(int, input().split())
     l.append((day, val))
-
+#
 
 def dfs(l, level, total):
     if level >= n:
