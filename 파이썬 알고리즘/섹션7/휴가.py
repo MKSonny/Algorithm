@@ -1,29 +1,33 @@
 n = int(input())
 
-l = []
+t = []
+v = []
 
 for i in range(n):
     day, val = map(int, input().split())
-    l.append((day, val))
+    t.append(day)
+    v.append(val)
+
+t.insert(0, 0)
+v.insert(0, 0)
+
 #
 
-def dfs(l, level, total):
-    if level >= n:
-        return total
+total = 0
 
-    day = l[level][0]
-    val = l[level][1]
+def dfs(level, sum):
+    global total
 
-    total += val
-    return dfs(l, level + day, total)
+    if level == n + 1:
+        if sum > total:
+            total = sum
+    else:
+        if level + t[level] <= n + 1:
+            dfs(level + t[level], sum + v[level])
+        dfs(level + 1, sum)
 
-h = []
-
-for i in range(n):
-    h.append(dfs(l, i, 0))
-
-print(max(h))
-
+dfs(1, 0)
+print(total)
 '''
 7
 4 20
