@@ -1,14 +1,3 @@
-import sys
-
-input = sys.stdin.readline
-
-'''
-4
-0 1 2 3
-4 0 5 6
-7 1 0 2
-3 4 5 0
-'''
 n = int(input())
 score = []
 summ = 0
@@ -16,32 +5,18 @@ summ = 0
 for _ in range(n):
     score.append(list(map(int, input().split())))
 
-# for i in score:
-#     print(i)
+visited = [False for _ in range(n)]
 
-# 1 팀 나누기
-# 2 visited => 팀에 맞게 점수 계산
-# 3 최솟값갱신
-
-
-
-visited = [False for _ in range(n + 1)]
-
-# print(visited)
 minn = float('inf')
 
-visited_l = []
-
-def dfs(pick):
+def combination(pick, level, visited):
     global minn
-
     if pick == n // 2:
-        print(visited)
         a_list = []
         b_list = []
         total_a = 0
         total_b = 0
-        for i in range(1, len(visited)):
+        for i in range(len(visited)):
             if visited[i]:
                 a_list.append(i)
             else:
@@ -52,25 +27,24 @@ def dfs(pick):
                 if i == j:
                     continue
                 else:
-                    total_a += score[i - 1][j - 1]
+                    total_a += score[i][j]
 
         for i in b_list:
             for j in b_list:
                 if i == j:
                     continue
                 else:
-                    total_b += score[i - 1][j - 1]
+                    total_b += score[i][j]
 
         if minn > abs(total_b - total_a):
             minn = abs(total_b - total_a)
-        # print()
         return
 
-    for i in range(0, n):
+    for i in range(level, len(visited)):
         if not visited[i]:
             visited[i] = True
-            dfs(pick + 1)
+            combination(pick + 1, i + 1, visited)
             visited[i] = False
 
-dfs(0)
+combination(0, 0, visited)
 print(minn)
