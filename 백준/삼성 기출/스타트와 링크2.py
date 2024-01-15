@@ -35,7 +35,7 @@ def combination(pick, level, visited):
                     continue
                 else:
                     total_b += score[i][j]
-#ㅓ
+#ㅓㅁ
         if minn > abs(total_b - total_a):
             minn = abs(total_b - total_a)
         return
