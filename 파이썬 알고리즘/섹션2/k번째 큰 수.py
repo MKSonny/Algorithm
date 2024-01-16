@@ -9,20 +9,31 @@ tmp = -1
 
 h = []
 
-for i in range(n):
-    sum = 0
-    sum += l[i]
-    for j in range(i + 1, n):
-        sum += l[j]
-        for k in range(j + 1, n):
-            sum += l[k]
-            h.append(sum)
-            sum -= l[k]
-        sum -= l[j]
-    sum -= l[i]
+# for i in range(n):
+#     sum = 0
+#     sum += l[i]
+#     for j in range(i + 1, n):
+#         sum += l[j]
+#         for k in range(j + 1, n):
+#             sum += l[k]
+#             h.append(sum)
+#             sum -= l[k]
+#         sum -= l[j]
+#     sum -= l[i]
 
-h.sort()
-h = list(set(h))
-h.sort()
+res = set()
+
+for i in range(n):
+    for j in range(i + 1, n):
+        for k in range(j + 1, n):
+            res.add(l[i] + l[j] + l[k])
+
+# h.sort()
+# h = list(set(h))
+# h.sort()
+
+res = list(res)
+res.sort()
+
 # print(h)
-print(h[-m])
+print(res[-m])
