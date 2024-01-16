@@ -1,16 +1,12 @@
 n = int(input())
 
-def finding(num):
-    cnt = 0
-    for i in range(1, num + 1):
-        if num % i == 0:
-            cnt += 1
-    return cnt == 2
+res = [0] * (n + 1)
+cnt = 0
 
-total = 0
+for i in range(2, n + 1):
+    if res[i] == 0:
+        cnt += 1
+        for j in range(i, n + 1, i):
+            res[j] += 1
 
-for i in range(1, n + 1):
-    if finding(i):
-        total += 1
-
-print(total)
+print(cnt)
