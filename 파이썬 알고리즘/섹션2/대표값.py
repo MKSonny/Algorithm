@@ -4,7 +4,8 @@ l = list(map(int, input().split()))
 10 
 45 73 66 87 92 67 75 79 75 80
 '''
-base = round(sum(l) / n)
+# base = round(sum(l) / n)
+base = int((sum(l) / n) + 0.5)
 # 기존 round 방식은 round_half_even 방식을 택한다.
 # round_half_even 방식은 4.500일 경우
 # round(4.500)의 결과는 4.5가 나온다.
