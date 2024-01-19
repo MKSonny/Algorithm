@@ -1,6 +1,6 @@
 l = list(input())
 t = 0
-
+#
 for i in l:
     if i.isdigit():
         t = t * 10 + int(i)
