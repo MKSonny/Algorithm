@@ -4,25 +4,9 @@ l = []
 for i in range(n):
     l.append(list(map(int, input().split())))
 
-mark = [False] * 3
+for i in range(1, n):
+    l[i][0] += min(l[i - 1][1], l[i - 1][2])
+    l[i][1] += min(l[i - 1][0], l[i - 1][2])
+    l[i][2] += min(l[i - 1][0], l[i - 1][1])
 
-minn = float('inf')
-
-def dfs(l, level, sol, mark):
-    global minn
-    if level == n:
-        r = sum(sol)
-        if r < minn:
-            minn = r
-        return
-    for i in range(3):
-        if not mark[i]:
-            sol.append(l[level][i])
-            mark = [False] * 3
-            mark[i] = True
-            dfs(l, level + 1, sol, mark)
-            mark[i] = False
-            sol.pop()
-
-dfs(l, 0, [], mark)
-print(minn)
+print(min(l[n - 1]))
