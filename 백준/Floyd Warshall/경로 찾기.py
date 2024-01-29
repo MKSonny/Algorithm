@@ -1,21 +1,26 @@
 import sys
 
-input = sys.stdin.readline
-n = int(input())
-d = []
+n = int(sys.stdin.readline())
+l = []
 
 for _ in range(n):
-    d.append(list(map(int, input().split())))
-
-parent = [[] for _ in range(n)]
+    l.append(list(map(int, sys.stdin.readline().split())))
 
 for i in range(n):
     for j in range(n):
-        if d[i][j] == 1:
-            parent[i].append(j)
+        if l[i][j] == 0:
+            l[i][j] = float('inf')
 
+for k in range(n):
+    for i in range(n):
+        for j in range(n):
+            if l[i][k] + l[k][j] < l[i][j]:
+                l[i][j] = l[i][k] + l[k][j]
 
 for i in range(n):
-    for key in parent[i]:
-        print(key)
-
+    for j in range(n):
+        if l[i][j] == float('inf'):
+            print(0, end=' ')
+        else:
+            print(1, end=' ')
+    print()
