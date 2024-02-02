@@ -5,22 +5,17 @@ l = list(map(int, sys.stdin.readline().split()))
 
 cnt = 0
 
-if l[n - 1] == m:
-    cnt += 1
+lt, rt = 0, 1
 
-for i in range(n - 1):
-    summ = l[i]
-    if summ > m:
-        continue
-    elif summ == m:
+while rt <= n and lt <= rt:
+    ssum = sum(l[lt:rt])
+    # print(lt, rt, ssum)
+    if ssum == m:
         cnt += 1
-        continue
-    for j in range(i + 1, n):
-        summ += l[j]
-        if summ > m:
-            break
-        elif summ == m:
-            cnt += 1
-            break
+        rt += 1
+    elif ssum < m:
+        rt += 1
+    else:
+        lt += 1
 
 print(cnt)
