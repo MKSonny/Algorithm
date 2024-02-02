@@ -4,27 +4,24 @@ n = int(sys.stdin.readline())
 l = list(map(int, sys.stdin.readline().split()))
 m = int(sys.stdin.readline())
 
-cnt = 0
-lt = 0
-rt = 1
-while lt <= rt and rt <= n:
-    if rt == n:
-        lt += 1
-        if lt == n - 1:
-            break
-        rt = lt + 1
-    ssum = l[lt]
-    ssum += l[rt]
+h = {}
 
-    if ssum == m:
-        ssum -= l[rt]
-        # print(lt, rt)
-        rt += 1
-        cnt += 1
+for i in l:
+    if i in h:
+        h[i] += 1
     else:
-        # print(ssum)
-        ssum -= l[rt]
-        rt += 1
-        # print('rt', rt)
+        h[i] = 1
 
-print(cnt)
+# print(h)
+
+cnt = 0
+
+for i in l:
+    if m - i < 0:
+        continue
+    else:
+        if m - i in h:
+            # print('i', i)
+            cnt += h[m - i]
+
+print(cnt//2)
