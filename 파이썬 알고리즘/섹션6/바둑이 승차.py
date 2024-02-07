@@ -15,20 +15,20 @@ for _ in range(n):
     l.append(int(sys.stdin.readline()))
 
 maxx = -1
+total = sum(l)
 
-def dfs(l, n, c, sol, level, remaining):
+def dfs(summ, level, tsum):
     global maxx
-    if sum(sol) > c:
+    if summ + total - tsum < maxx:
         return
-    if remaining + sum(sol) < maxx:
+    if summ > c:
         return
     if level == n:
-        maxx = max(sum(sol), maxx)
+        maxx = max(summ, maxx)
         return
-    for i in range(level, n):
-        sol.append(l[i])
-        dfs(l, n, c, sol, i + 1, remaining - l[i])
-        sol.pop()
+    dfs(summ + l[level], level + 1, tsum + l[level])
+    dfs(summ, level + 1, tsum + l[level])
 
-dfs(l, n, c, [], 0, sum(l))
+
+dfs(0, 0, 0)
 print(maxx)
