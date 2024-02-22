@@ -69,6 +69,7 @@ def re_v2(y, x, by, bx):
             if l[ny][nx] == '.':
                 if l[ny][nx] == 'O':
                     # print(1)
+
                     # maxx = 1
                     return
                 if i == 0:
