@@ -46,5 +46,5 @@ for k in range(n):
 
 if h == l:
     print(ssum // 2)
-else:
+else: ㅇ
     print(-1)
