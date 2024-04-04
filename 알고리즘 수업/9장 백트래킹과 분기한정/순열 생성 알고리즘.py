@@ -2,7 +2,6 @@ def all_permutations(data):
     bUsed = [False] * len(data)
     DFS_permutation(data, [], 0, bUsed)
 
-#ㅓjㅏ
 def DFS_permutation(data, sol, level, bUsed):
     if level == len(data):
         print(sol)
