@@ -7,12 +7,12 @@ l = []
 for _ in range(n):
     l.append(list(input().strip()))
 
-visited = [False] * 26
-visited[ord(l[0][0] - 65)] = True
-
+visited = [[False for _ in range(m)] for _ in range(n)]
 
 dy = [-1, 1, 0, 0]
 dx = [0, 0, -1, 1]
+
+mark = set()
 
 def dfs(y, x, mark, sol):
     global maxx
@@ -20,24 +20,22 @@ def dfs(y, x, mark, sol):
         ny = y + dy[i]
         nx = x + dx[i]
         if 0 <= ny < n and 0 <= nx < m:
-            if l[ny][nx] not in mark:
+            if l[ny][nx] not in mark and not visited[ny][nx]:
                 mark.add(l[ny][nx])
-                # visited[ny][nx] = True
+                visited[ny][nx] = True
                 maxx += 1
+
                 dfs(ny, nx, mark, sol)
                 mark.remove(l[ny][nx])
                 sol.append(maxx)
                 maxx -= 1
-                # visited[ny][nx] = False
-
+                visited[ny][nx] = False
 
 sol = []
-for i in range(n):
-    for j in range(m):
-        if l[i][j] not in mark:
-            mark.add(l[i][j])
-            # visited[i][j] = True
-            maxx = 1
-            dfs(i, j, mark, sol)
+maxx = 1
+visited[0][0] = True
+mark.add(l[0][0])
 
+dfs(0, 0, mark, sol)
+# print(sol)
 print(max(sol))
