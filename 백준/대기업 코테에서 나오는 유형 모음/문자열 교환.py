@@ -1,25 +1,14 @@
 import sys
 
 l = list(sys.stdin.readline().rstrip())
+result = []
+window_size = l.count('a')
 
-idx = 1
-prev = 0
-cur = -1
-answer = 0
+l = l + l
+# n = 4, a = 2
+minn = float('inf')
+for i in range(len(l) - window_size):
+    # result.append((i, l[i:i + window_size].count('b')))
+    minn = min(minn, l[i:i + window_size].count('b'))
 
-while idx < len(l):
-    if l[idx] == 'b':
-        if l[prev] != l[idx] and cur != -1:
-            # print(cur, idx)
-            l[cur + 1], l[idx] = l[idx], l[cur + 1]
-            cur += 1
-            answer += 1
-        # l[cur + 1], l[idx] = l[idx], l[cur + 1]
-        if l[idx] == l[prev] and l[idx] == 'b':
-            cur = idx
-    idx += 1
-    prev += 1
-
-print(l.sort())
-print(l)
-# print(answer)
+print(minn)
