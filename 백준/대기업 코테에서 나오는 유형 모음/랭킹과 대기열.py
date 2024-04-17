@@ -1,48 +1,34 @@
 import sys
 
 p, m = map(int, sys.stdin.readline().split())
-room = []
+rooms = [[] for _ in range(p)]
 waiting = []
 players = []
 
 for _ in range(p):
     level, name = sys.stdin.readline().rstrip().split()
-    players.append((level, name))
-
-while players:
-    level, name = players.pop(0)
     level = int(level)
-    if len(room) == 0:
-        base_level = level
 
-    if level <= base_level + 10 and level >= base_level - 10:
-        room.append((level, name))
-    else:
-        waiting.append((level, name))
+    for room in rooms:
+        if len(room) == m:
+            continue
+        if len(room) == 0:
+            room.append((level, name, level))
+            break
+        elif room[0][2] - 10 <= level <= room[0][2] + 10:
+            room.append((level, name))
+            break
 
-    if len(waiting) == m:
-        print("Started!")
-        for i in waiting:
-            print(i[0], i[1])
+def print_room(room):
+    room.sort(key=lambda o: o[1])
+    for i in room:
+        print(i[0], i[1])
 
-        waiting.clear()
 
+for room in rooms:
     if len(room) == m:
         print("Started!")
-        for i in room:
-            print(i[0], i[1])
-
-        room.clear()
-
-        if len(waiting) > 0:
-            level, name = waiting.pop(0)
-            base_level = level
-            room.append((level, name))
-
-            while waiting:
-                players.insert(0, waiting.pop(0))
-
-while room:
-    level, name = room.pop(0)
-    print("Waiting!")
-    print(level, name)
+        print_room(room)
+    elif len(room) > 0:
+        print("Waiting!")
+        print_room(room)
