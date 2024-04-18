@@ -9,11 +9,9 @@ def move(y, x, n, dist, visited):
         ny = y + dy[i]
         nx = x + dx[i]
         if 0 <= ny < n and 0 <= nx < n:
-            if not visited[ny][nx]:
-                dist[ny][nx] = l[ny][nx] + dist[y][x]
-                visited[ny][nx] = True
             if l[ny][nx] + dist[y][x] < dist[ny][nx]:
                 dist[ny][nx] = l[ny][nx] + dist[y][x]
+
 
     # print('a')
     # for p in dist:
@@ -35,15 +33,15 @@ while True:
     for _ in range(n):
         l.append(list(map(int, sys.stdin.readline().rstrip().split())))
 
-    dist = copy.deepcopy(l)
+    dist = [[float('inf') for _ in range(n)] for _ in range(n)]
+    dist[0][0] = l[0][0]
 
     for i in range(n):
         for j in range(n):
-            visited[i][j] = True
             move(i, j, n, dist, visited)
 
     for p in dist:
         print(p)
     print()
 
-    print("Problem %d: %d" % (cnt, dist[n - 1][n - 1]))
+    # print("Problem %d: %d" % (cnt, dist[n - 1][n - 1]))
