@@ -1,47 +1,46 @@
-import copy
+import heapq
 import sys
 
 dy = [-1, 1, 0, 0]
 dx = [0, 0, -1, 1]
 
-def move(y, x, n, dist, visited):
-    for i in range(4):
-        ny = y + dy[i]
-        nx = x + dx[i]
-        if 0 <= ny < n and 0 <= nx < n:
-            if l[ny][nx] + dist[y][x] < dist[ny][nx]:
-                dist[ny][nx] = l[ny][nx] + dist[y][x]
+def dijkstra(l, dist, n, cnt):
+    h = []
+    heapq.heappush(h, (l[0][0], 0, 0))
+    dist[0][0] = 0
 
+    while h:
+        cost, y, x = heapq.heappop(h)
 
-    # print('a')
-    # for p in dist:
-    #     print(p)
-    # print()
+        if y == n - 1 and x == n - 1:
+            print(f"Problem {cnt}: {dist[n - 1][n - 1]}")
+            break
 
+        for i in range(4):
+            ny = y + dy[i]
+            nx = x + dx[i]
 
-cnt = 0
+            if 0 <= ny < n and 0 <= nx < n:
+                new_cost = cost + l[ny][nx]
+
+                if new_cost < dist[ny][nx]:
+                    dist[ny][nx] = new_cost
+                    heapq.heappush(h, (new_cost, ny, nx))
+
+INF = float('inf')
+cnt = 1
+
 while True:
     n = int(sys.stdin.readline())
     if n == 0:
         break
 
-    cnt += 1
     l = []
-
-    visited = [[False for _ in range(n)] for _ in range(n)]
 
     for _ in range(n):
         l.append(list(map(int, sys.stdin.readline().rstrip().split())))
 
-    dist = [[float('inf') for _ in range(n)] for _ in range(n)]
-    dist[0][0] = l[0][0]
+    dist = [[INF for _ in range(n)] for _ in range(n)]
 
-    for i in range(n):
-        for j in range(n):
-            move(i, j, n, dist, visited)
-
-    for p in dist:
-        print(p)
-    print()
-
-    # print("Problem %d: %d" % (cnt, dist[n - 1][n - 1]))
+    dijkstra(l, dist, n, cnt)
+    cnt += 1
