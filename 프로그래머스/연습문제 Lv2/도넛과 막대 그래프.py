@@ -1,87 +1,29 @@
-def dfs(l, node, node_cnt, edge_cnt, start_node, visited):
-    # if node == start_node and node_cnt > 0:
-    #     return node_cnt, edge_cnt
-
-    if not visited[node]:
-        node_cnt += 1
-        visited[node] = True
-        # print(node)
-
-    for idx, i in enumerate(l[node]):
-        if i == 1:
-            # if node != start_node:
-            edge_cnt += 1
-            l[node][idx] = -1
-            return dfs(l, idx, node_cnt, edge_cnt, start_node, visited)
-
-
-    return node_cnt, edge_cnt
-
-
 def solution(edges):
     answer = []
-    node = max(max(edges))
 
-    l = [[-1 for _ in range(node + 1)] for _ in range(node + 1)]
-    for i in range(len(edges)):
-        a, b = edges[i]
-        l[a][b] = 1
+    find = {}
 
-    maxx = -1
-    max_i = -1
+    for s, e in edges:
+        if not find.get(s):
+            find[s] = [0, 0]
+        if not find.get(e):
+            find[e] = [0, 0]
 
-    for i in range(1, node + 1):
-        if maxx < l[i].count(1):
-            maxx = l[i].count(1)
-            max_i = i
+        find[s][0] += 1
+        find[e][1] += 1
 
-    # dfs(l, node, node_cnt, edge_cnt, start_node)
-    # for i in range(1, node + 1):
+    answer = [0, 0, 0, 0]
 
-    # print(l[max_i])
+    for i in find:
+        if find[i][0] == 0 and find[i][1] >= 1:
+            answer[2] += 1
+        elif find[i][0] >= 2 and find[i][1] >= 2:
+            answer[3] += 1
+        elif find[i][0] >= 2 and find[i][1] == 0:
+            answer[0] = i
 
-    donut = 0
-    graph = 0
-    eight = 0
-
-    visited = [False] * (node + 1)
-    visited[0] = True
-
-    # while visited.count(True) != node:
-    q = []
-    for i in range(len(l[max_i])):
-        if l[max_i][i] == 1:
-            q.append(i)
-
-    # 중심과 연결된 간선의 연결을 모두 끊는다.
-    visited[max_i] = True
-
-
-    while q:
-        i = q.pop(0)
-        # print(i)
-        node_cnt, edge_cnt = dfs(l, i, 0, 0, i, visited)
-        if node_cnt == edge_cnt:
-            donut += 1
-        elif node_cnt == edge_cnt - 1:
-            eight += 1
-        elif edge_cnt == 0:
-            graph += 1
-        elif node_cnt == edge_cnt + 1:
-            graph += 1
-        # print(node_cnt, edge_cnt)
-
-        # if len(q) == 0 and visited.count(True) != node + 1:
-        #     temp = visited.index(False)
-        #     # print(l[temp])
-        #     for idx, i in enumerate(l[temp]):
-        #         if i == 1:
-        #             # print(i, idx)
-        #             visited[idx] = False
-        #     q.append(temp)
-
-
-    # print(donut, eight)
-    answer = [max_i, donut, graph, eight]
-    # print(answer)
+    answer[1] = find[answer[0]][0] - (answer[2] + answer[3])
+    # 생성된 지점에서 나가는 간선이 2개인데 막대 그래프가 1개 나온다면,
+    # 반드시 나가는 간선 1개는 다른 그래프를 형성해야하는데 팔자 그래프도 없다고 한다면
+    # 반드시 도넛 그래프다.
     return answer
