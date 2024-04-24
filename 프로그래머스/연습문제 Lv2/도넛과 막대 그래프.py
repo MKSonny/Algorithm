@@ -1,6 +1,5 @@
 def solution(edges):
     answer = []
-
     find = {}
 
     for s, e in edges:
