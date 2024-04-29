@@ -5,7 +5,7 @@ m = int(sys.stdin.readline())
 
 k = list(map(int, sys.stdin.readline().rstrip().split()))
 k.sort()
-
+# 구현 성공!
 min_i = float('inf')
 
 lt = 0
