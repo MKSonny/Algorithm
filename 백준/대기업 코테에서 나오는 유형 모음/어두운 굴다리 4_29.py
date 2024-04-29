@@ -4,35 +4,31 @@ n = int(sys.stdin.readline())
 m = int(sys.stdin.readline())
 
 k = list(map(int, sys.stdin.readline().rstrip().split()))
-k.sort()
 
-min_i = -1
+def is_safe(l):
+    for i in l:
+        if i == 0:
+            return False
+    return True
 
 lt = 0
 rt = n
-
 while rt >= lt:
-    mid = (lt + rt) // 2
-
-    for key in range(m):
-        s = k[key] - mid
-        e = k[key] + mid
-
+    l = [0] * n
+    i = (lt + rt) // 2
+    for key in k:
+        s = key - i
+        e = key + i
         if s < 0:
             s = 0
         if e >= n:
             e = n
-
-        if key == 0:
-            prev_s = s
-            prev_e = e
-        else:
-            if prev_e >= s:
-                prev_e = e
-
-
-    if prev_s == 0 and prev_e == n:
-        print(mid)
+        for j in range(s, e):
+            if l[j] == 1:
+                continue
+            l[j] = 1
+    if is_safe(l):
+        print(i)
         break
     else:
-        lt = mid + 1
+        lt = i + 1
