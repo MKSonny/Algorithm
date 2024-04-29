@@ -17,20 +17,12 @@ l.sort()
 def find(l, first, last, m):
     cnt = 2
     result = 0
+    l = set(l)
     while last >= first:
         mid = (first + last) // 2
-        cnt += 1
-        print(first, last, mid, cnt)
-        if first == mid or last == mid:
-
-        if cnt == m:
-            # print(mid, first, last)
-            # print(l[mid], l[first], l[last])
-            return min(abs(l[mid] - l[first]), abs(l[mid] - l[last]))
-        if abs(l[mid] - l[first]) < abs(l[mid] - l[last]):
-            first = mid
+        if mid in l:
+            cnt += 1
         else:
-            last = mid
-    return result
+            first = mid + 1
 
 print(find(l, 0, len(l) - 1, m))
