@@ -4,13 +4,20 @@ n = int(sys.stdin.readline())
 m = int(sys.stdin.readline())
 
 k = list(map(int, sys.stdin.readline().rstrip().split()))
+k.sort()
 
 min_i = -1
 
-for i in range(n + 1, 1, -1):
+lt = 0
+rt = n
+
+while rt >= lt:
+    mid = (lt + rt) // 2
+
     for key in range(m):
-        s = k[key] - i
-        e = k[key] + i
+        s = k[key] - mid
+        e = k[key] + mid
+
         if s < 0:
             s = 0
         if e >= n:
@@ -23,9 +30,9 @@ for i in range(n + 1, 1, -1):
             if prev_e >= s:
                 prev_e = e
 
-    if prev_s == 0 and prev_e == n:
-        min_i = i
-    else:
-        break
 
-print(min_i)
+    if prev_s == 0 and prev_e == n:
+        print(mid)
+        break
+    else:
+        lt = mid + 1
