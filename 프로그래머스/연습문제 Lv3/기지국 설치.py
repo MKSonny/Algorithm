@@ -1,3 +1,6 @@
+import heapq
+
+
 def solution(n, stations, w):
     answer = 0
     std = w * 2 + 1
@@ -18,6 +21,7 @@ def solution(n, stations, w):
         answer += cnt // std
         if cnt % std != 0:
             answer += 1
+
 
     if e != n:
         cnt = n - e
