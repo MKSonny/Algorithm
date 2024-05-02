@@ -1,3 +1,5 @@
+from collections import deque
+
 dy = [-1, 1, 0, 0]
 dx = [0, 0, -1, 1]
 
@@ -26,10 +28,10 @@ def solution(maps):
 
     def bfs(maps, y, x):
         # global cnt
-        q = []
+        q = deque()
         q.append((y, x))
         while q:
-            y, x = q.pop(0)
+            y, x = q.popleft()
             for i in range(4):
                 ny = y + dy[i]
                 nx = x + dx[i]
