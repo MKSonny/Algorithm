@@ -13,7 +13,6 @@ l = []
 height = []
 weight = []
 l = []
-
 for _ in range(n):
     a, b = map(int, input().split())
     l.append((a, b))
