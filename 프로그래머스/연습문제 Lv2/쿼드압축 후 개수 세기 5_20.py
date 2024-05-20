@@ -1,7 +1,7 @@
 t_0 = 0
 t_1 = 0
 
-
+#
 def solution(arr):
     answer = []
 
