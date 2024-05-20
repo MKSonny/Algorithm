@@ -9,26 +9,18 @@ for _ in range(n):
 
 minn = float('inf')
 move = [-1, 0, 1]
-def dfs(l, level, prev, total, moving):
-    global minn
+def dfs(l, level, minn, row, prev, total):
     if level == n:
-        minn = min(total, minn)
-        return
-    for i in range(3):
-        if i != moving:
-            m_l = prev + move[i]
-            if m_l < 0:
-                m_l = 0
-                moving = 0
-            if m_l >= m:
-                m_l = m - 1
-                moving = 0
-            total += l[level][m_l]
-            print(l[level][m_l], i, moving)
-            dfs(l, level + 1, m_l, total, i)
-            print()
-            total -= l[level][m_l]
+        return min(total, minn)
+    for i in move:
+        if i != prev:
+            if 0 <= row + i < m:
+                print(l[level][row + i])
+                minn = dfs(l, row + i, level + 1, minn, i, total + l[level][row + i])
+                print()
+    return minn
 
-dfs(l, 0, 0, 0, -1)
+for i in range(m):
+    print(dfs(l, 0, minn, i, -1, 0))
 
 print(minn)
