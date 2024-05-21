@@ -11,26 +11,21 @@ for _ in range(n):
 
 cursor = len(l)
 
-for i in order:
-    if len(i) > 1:
-        a, b = i.split()
-    else:
-        a = i
-    if cursor < 0:
-        cursor = 0
-    if cursor > len(l):
-        cursor = n
-    if a == 'P':
-        l.insert(cursor, b)
-        cursor += 1
-    elif a == 'L':
-        cursor -= 1
-    elif a == 'B':
-        cursor -= 1
-        if cursor < 0:
-            continue
-        l.pop(cursor)
-    elif a == 'D':
-        cursor += 1
+stack_2 = []
 
+for i in order:
+    o = list(i.split())
+    if o[0] == 'P':
+        l.append(o[1])
+    elif o[0] == 'L':
+        if l:
+            stack_2.append(l.pop())
+    elif o[0] == 'B':
+        if l:
+            l.pop()
+    elif o[0] == 'D':
+        if stack_2:
+            l.append(stack_2.pop())
+
+l.extend(reversed(stack_2))
 print(''.join(l))
