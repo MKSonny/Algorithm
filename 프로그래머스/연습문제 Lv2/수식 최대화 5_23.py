@@ -1,66 +1,57 @@
 import re
+from itertools import permutations
 
-l = '100-200*300-500+20'
-# l = '50*6-3*2'
-# temp = ''
-# for i in l:
-#     if i.isdigit():
-#        temp += i
-#     else:
-#
-# result = re.split(r'[-+*]', l)
-# print(result)
+def solution(expression):
+    rank_options = [1, 2, 3]
+    maxx = -1
+    for i in permutations(rank_options):
+        rank = {
+            '*': i[0],
+            '+': i[1],
+            '-': i[2]
+        }
 
-rank = {
-    '*': 3,
-    '-': 1,
-    '+': 2
-}
+        def infix_to_postfix(expression):
+            output = []
+            stack = []
 
-# rank = {
-#     '*': 2,
-#     '-': 3,
-#     '+': 2
-# }
+            l = re.findall(r'\d+|[-+*]', expression)
+
+            for token in l:
+                if token.isdigit():
+                    output.append(token)
+                else:
+                    while stack and rank[stack[-1]] >= rank[token]:
+                        output.append(stack.pop())
+                    stack.append(token)
+
+            while stack:
+                output.append(stack.pop())
+
+            return output
+
+        def calulate_postfix(postfix):
+            stack = []
+
+            for token in postfix:
+                if token.isdigit():
+                    stack.append(int(token))
+                else:
+                    b = stack.pop()
+                    a = stack.pop()
+                    if token == '+':
+                        stack.append(a + b)
+                    elif token == '-':
+                        stack.append(a - b)
+                    elif token == '*':
+                        stack.append(a * b)
+
+            return stack[0]
 
 
-answer = ''
-stack = []
+        postfix_expression = infix_to_postfix(expression)
 
-for i in l:
-    if i.isdigit():
-        answer += i
-    else:
-        if stack and rank[stack[-1]] >= rank[i]:
-            answer += '|' + stack.pop() + '|'
-            stack.append(i)
-        else:
-            answer += '|'
-            # print(stack, i)
-            stack.append(i)
-while stack:
-    answer += '|' + stack.pop()
+        result = abs(calulate_postfix(postfix_expression))
+        maxx = max(maxx, result)
 
-stack = []
-print(answer)
-
-temp = ''
-for i in answer:
-    print(stack)
-    if i.isdigit():
-        temp += i
-    elif temp != '' and i == '|':
-        stack.append(int(temp))
-        temp = ''
-    elif not i.isdigit() and i != '|':
-        n1 = stack.pop()
-        n2 = stack.pop()
-        if i == '+':
-            stack.append(n1 + n2)
-        elif i == '-':
-            stack.append(-(n1 - n2))
-            # stack.append(-(n1 + n2))
-        elif i == '*':
-            stack.append(n1 * n2)
-
-print(stack)
+    return maxx
