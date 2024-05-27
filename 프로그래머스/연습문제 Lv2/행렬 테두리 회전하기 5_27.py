@@ -41,8 +41,6 @@ def solution(rows, columns, queries):
     toggle = 0
     cnt = 0
 
-    # queries = [[1,1,2,2],[1,2,2,3],[2,1,3,2],[2,2,3,3]]
-
     def dfs(y, x, s):
         toggle = 0
         l[y][x] = s.popleft()
