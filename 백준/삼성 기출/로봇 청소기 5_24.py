@@ -4,6 +4,8 @@ n, m = map(int, sys.stdin.readline().split())
 start_y, start_x, direction = map(int, sys.stdin.readline().split())
 l = []
 
+visited = [[False for _ in range(m)] for _ in range(n)]
+
 for _ in range(n):
     l.append(list(map(int, sys.stdin.readline().split())))
 
@@ -23,16 +25,17 @@ dx = [0, 1, 0, -1]
 '''
 
 
-cnt = 0
+cnt = 2
 
 for_d = [0, 1, 2, 3]
 
 def dfs(y, x, d):
     global cnt
+    visited[y][x] = True
 
     if l[y][x] == 0:
+        # l[y][x] = cnt
         cnt += 1
-        l[y][x] = cnt
 
     for i in l:
         print(i)
@@ -42,9 +45,10 @@ def dfs(y, x, d):
         ny = y + dy[for_d[d - i]]
         nx = x + dx[for_d[d - i]]
         if 0 <= ny < n and 0 <= nx < m:
-            if l[ny][nx] == 0:
-                # print(for_d[d - i])
+            if not visited[ny][nx]:
                 dfs(ny, nx, for_d[d - i])
+            # if l[ny][nx] == 0:
+                # print(for_d[d - i])
 
 
     if d == 0:
@@ -57,7 +61,12 @@ def dfs(y, x, d):
         x += 1
 
     if x < 0 or y < 0 or y >= m or x >= n:
-        print(cnt)
+        print(cnt - 2)
+        for i in l:
+            print(i)
+        exit()
+    elif l[y][x] == 1:
+        print(cnt - 2)
         for i in l:
             print(i)
         exit()
