@@ -12,7 +12,7 @@ def solution(queue1, queue2):
 
     cnt = 0
     n = len(queue1)
-    maxx = n * 3
+    maxx = (n + n) * 2
 
     if a == b:
         return 0
