@@ -21,6 +21,7 @@ def permutations(level, n, l, sol, visited, k):
 def solution(n, k):
     l = [i for i in range(1, n + 1)]
     visited = [False] * n
+
     k = 3
 
     return permutations(0, n, l, [], visited, k)
