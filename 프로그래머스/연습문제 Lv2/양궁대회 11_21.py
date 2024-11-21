@@ -1,67 +1,42 @@
 def solution(n, info):
-    answer = []
-    temp = []
+    answer = [0 for _ in range(11)]
+    tmp = [0 for _ in range(11)]
+    maxDiff = 0
 
-    for i in info:
-        temp.append(i + 1)
+    for subset in range(1, 1 << 10):
+        ryan = 0
+        appeach = 0
+        cnt = 0
 
-    pick = []
-    for i in range(len(info)):
-        if info[i] > 0:
-            pick.append(10 - i)
+        # print(subset)
+        for i in range(10):
+            if subset & (1 << i):
+                ryan += 10 - i
+                # 라이언이 쏴야 하는 화살의 수는 어피치보다
+                # 하나만 많으면 된다
+                tmp[i] = info[i] + 1
+                cnt += tmp[i]
+            else:
+                tmp[i] = 0
+                if info[i]:
+                    appeach += 10 - i
 
-    total = sum(info)
+        if cnt > n: continue
+        tmp[10] = n - cnt  # 남은 화살은 0점에 맞춘걸로 기록
 
-    maxx = 0
+        if ryan - appeach == maxDiff:
+            for i in reversed(range(11)):
+                if tmp[i] > answer[i]:
+                    maxDiff = ryan - appeach
+                    answer = tmp[:]
+                    break
+                elif tmp[i] < answer[i]:
+                    break
+        elif ryan - appeach > maxDiff:
+            maxDiff = ryan - appeach
+            answer = tmp[:]
 
-    def dfs(li, t, prev, arrows):
-        nonlocal total
-        nonlocal maxx
-        nonlocal answer
-        if t == total:
-            print('li', li, sum(li))
-            if maxx <= sum(li):
-                p_total = 0
-                for i in pick:
-                    if i not in li:
-                        p_total += i
-                if sum(li) > p_total:
-                    maxx = sum(li)
-                    answer.append((li[:], arrows[:]))
-                    # answer.append(arrows[:])
-            return
-        for i in range(prev, len(temp)):
-            t += temp[i]
-            li.append(10 - i)
-            arrows.append(temp[i])
-            dfs(li, t, i + 1, arrows)
-            arrows.pop()
-            li.pop()
-            t -= temp[i]
+    if maxDiff == 0:
+        answer = [-1]
 
-    dfs([], 0, 0, [])
-    final_list = []
-
-    # print(answer)
-
-    for i in answer:
-        if sum(i[0]) < maxx:
-            answer.remove(i)
-
-    if len(answer) == 0:
-        return [-1]
-
-    for i in answer:
-        temp_final = [0 for _ in range(len(info))]
-        for j, a in zip(i[0], i[1]):
-            temp_final[10 - j] = a
-        final_list.append(temp_final)
-
-    for i in final_list:
-        print(i)
-    if len(final_list) == 1:
-        return final_list.pop()
-    else:
-        for i in final_list:
-            print(i)
     return answer
