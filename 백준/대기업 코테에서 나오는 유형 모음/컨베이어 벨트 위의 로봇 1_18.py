@@ -1,59 +1,36 @@
 import sys
 from collections import deque
 from operator import truediv
+from tabnanny import check
 
 n, k = map(int, sys.stdin.readline().split())
 l = list(sys.stdin.readline().split())
 l = list(map(int, l))
 l = deque(l)
 
-robot = [0]
-
-# 1 2 1 2 1 2
-# 1 1 1 2 1 2 -> 이후 회전
-
-# 2 1 1 1 2 1 -> 각 로봇의 위치 알아야 됨
-
-
-def go_front(robot, l):
-    for i in range(len(robot)):
-        if robot[i] + 1 == n:
-            robot[i] = -1
-            continue
-        if l[robot[i] + 1] > 0 and robot[i] != -1:
-            l[robot[i] + 1] -= 1
-            robot[i] += 1
-    return robot, l
-
-
-def robot_all(robot):
-    for i in range(len(robot)):
-        if robot[i] != -1:
-            robot[i] += 1
-            if robot[i] == n:
-                robot[i] = -1
-    return robot
-
-
-def check(l):
-    cnt = 0
-    for i in l:
-        if i == 0:
-            cnt += 1
-            if cnt == k:
-                return True
-    return False
-
 answer = 0
+belt = deque([False] * n)
 
-while l[0] != 0:
-    l.appendleft(l.pop())
-    robot = robot_all(robot)
-    robot, l = go_front(robot, l)
-    robot.append(0)
+while True:
     answer += 1
-    print(l)
 
-    if check(l):
-        print(answer)
+    l.rotate(1)
+    belt.rotate(1)
+
+    belt[n - 1] = False
+
+    for i in range(n - 2, -1, -1):
+        if belt[i] and not belt[i + 1] and l[i + 1] > 0:
+            belt[i], belt[i + 1] = False, True
+            l[i + 1] -= 1
+
+    belt[n - 1] = False
+
+    if l[0] > 0:
+        belt[0] = True
+        l[0] -= 1
+
+    if l.count(0) >= k:
         break
+
+print(answer)
