@@ -5,7 +5,6 @@ n = int(sys.stdin.readline())
 lo = list(map(int, sys.stdin.readline().split()))
 
 dp = [min(lo)] * n
-print(dp)
 
 for i in range(n):
     to = 0
@@ -13,4 +12,4 @@ for i in range(n):
         to += lo[j]
         dp[i] = max(dp[i], to)
 
-print(dp)
+print(max(dp))
