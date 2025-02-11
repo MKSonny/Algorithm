@@ -1,22 +1,49 @@
 import sys
+from collections import deque
+from sys import flags
 
 n, m = map(int, sys.stdin.readline().split())
 
-la = []
+ladders = {}
+snakes = {}
+
 for _ in range(n):
     a, b = map(int, sys.stdin.readline().split())
-    la.append((a, b))
+    ladders[a] = b
 
-sn = []
 for _ in range(m):
-    sn.append(map(int, list(sys.stdin.readline().split())))
+    a, b = map(int, sys.stdin.readline().split())
+    snakes[a] = b
 
-# 건너뛸 수 있음
-# 무조건 사다리 쪽으로 이동
-# 이후 뱀쪽을 밟지 않게 이동
-# 가장 가까이 있는 사다리로 이동
+q = deque([1])
+visited = [False] * 101
+visited[1] = False
+cnt = 0
 
-la.sort(key=lambda o:-(o[1] - o[0]))
+flag = True
 
-for a, b in la:
-    print(a, b)
+while flag:
+    length = len(q)
+    for _ in range(length):
+        x = q.popleft()
+        if x == 100:
+            print(cnt)
+            flag = False
+            break
+
+        for i in range(1, 7):
+            nx = x + i
+
+            if nx <= 100 and not visited[nx]:
+                visited[nx] = True
+                if nx in ladders.keys():
+                    visited[ladders[nx]] = True
+                    q.append(ladders[nx])
+                elif nx in snakes.keys():
+                    visited[snakes[nx]] = True
+                    q.append(snakes[nx])
+                else:
+                    q.append(nx)
+
+
+    cnt += 1
