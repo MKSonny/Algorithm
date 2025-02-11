@@ -17,22 +17,53 @@ for _ in range(n):
 n = len(lo)
 # print(lo)
 
-for _ in range(m):
-    sc.append(int(sys.stdin.readline()))
+for i in range(m):
+    sc.append(((int(sys.stdin.readline())), i))
 
-idx = 0
+sc.sort()
+k = 0
 ans = []
 
-for i in sc:
-    if int(lo[idx][1]) < i:
-        idx += 1
-        if idx == len(lo): break
-    ans.append(lo[idx][0])
+'''
+3 8
+WEAK 10000
+NORMAL 10000
+STRONG 1000000
+0
+9999
+10000
+10001
+50000
+100000
+500000
+1000000
+===========
 
-n = len(lo)
+3 5
+B 100
+A 101
+C 102
+99
+100
+101
+500
+1000
+'''
 
-if len(ans) != m:
-    for _ in range(m - len(ans)):
-        ans.append(lo[n - 1][0])
+for i, idx in sc:
+    if int(lo[k][1]) < i:
+        k += 1
+        if k == len(lo):
+            k = len(lo) - 1
+    ans.append((idx, lo[k][0]))
 
-for i in ans: print(i)
+ans.sort()
+for a, b in ans:
+    print(b)
+# n = len(lo)
+#
+# if len(ans) != m:
+#     for _ in range(m - len(ans)):
+#         ans.append(lo[n - 1][0])
+#
+# for i in ans: print(i)
