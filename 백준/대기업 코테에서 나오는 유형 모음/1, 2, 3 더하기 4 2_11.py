@@ -1,45 +1,15 @@
-# 60
 import sys
-from itertools import combinations
-from telnetlib import theNULL
 
-n = int(sys.stdin.readline())
+t = int(sys.stdin.readline())
 
-lo = []
+dp = [1] * 10001
 
-for _ in range(n):
-    lo.append(int(sys.stdin.readline()))
+for i in range(2, 10001):
+    dp[i] += dp[i - 2]
 
-# 1
-# 1
+for i in range(3, 10001):
+    dp[i] += dp[i - 3]
 
-# 2
-# 1 + 1
-# 2
-
-# 3
-# 1 + 1 + 1
-# 1 + 2
-# 3
-
-# 4
-# 1 + 1 + 1 + 1
-# 2 + 1 + 1
-# 2 + 2
-# 3 + 1
-
-# 5
-# 1 + 1 + 1 + 1 + 1
-# 2 + 2 + 1
-# 2 + 1 + 1 + 1
-# 3 + 2
-
-# 4 + 1
-test = [2, 3]
-
-te = [1 for _ in range(4)]
-total = sum(te)
-total -= te.pop()
-for i in test:
-
-
+for _ in range(t):
+    n = int(input())
+    print(dp[n])
