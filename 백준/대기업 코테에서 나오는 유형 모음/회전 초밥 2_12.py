@@ -8,33 +8,19 @@ plate = []
 for _ in range(N):
     plate.append(int(sys.stdin.readline()))
 
-print(plate)
-plate += plate
-print(plate)
-idx = 0
-print()
+maxx = 0
+cnt = 0
+eat = deque()
 
-def check(start):
-    idx = start
-    q = []
-    maxx = k
-    flag = True
-    while idx < 2 * N:
-        if plate[idx] == c and flag:
-            maxx += 1
-            flag = False
+for i in range(k - 1):
+    eat.append(plate[i])
 
-        if len(q) == maxx:
-            print(q, set(q))
-            return len(set(q))
+for j in range(N):
+    eat.append(plate[(j + k - 1) % N])
+    cnt = 0
+    if c not in eat:
+        cnt = 1
+    maxx = max(len(set(eat)) + cnt, maxx)
+    eat.popleft()
 
-        q.append(plate[idx])
-
-        idx += 1
-
-maxx = 1
-for i in range(N):
-   maxx = max(maxx, check(i))
 print(maxx)
-
-
