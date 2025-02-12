@@ -4,9 +4,9 @@ n, k = map(int, sys.stdin.readline().split())
 lo = list(map(int, sys.stdin.readline().split()))
 
 '''
-12 2
+12 3
 0 1 2 3 4 5 6
-3 2 5 5 5 4 4 1 7 1 2 5
+3 2 5 5 5 5 4 1 7 1 2 5
 '''
 idx = 0
 cnt = 0
@@ -24,8 +24,9 @@ while idx < n:
     if di[lo[idx]] > k:
         cnt = 1
         # print('idx', idx)
-        idx = di2[lo[idx]]
-        di2[lo[idx]] = di2[lo[idx]] - 1
+        a = di2[lo[idx]]
+        di2[lo[idx]] = a + 1
+        idx = a + 1
 
         di = {lo[idx]: 1}
     else:
