@@ -17,19 +17,23 @@ lt, rt = 0, 0
 def check(to, li, ori, m):
     # 1, 5, 6
     # to = []
+    print('li', li)
     for i in range(len(li)):
-        te = li[i:i + 2]
+        te = li[i:i + m]
         cnt = 0
-        if len(te) <= 1:
+        # print('te1', te, end=' ')
+        if len(te) < m:
             continue
-        c = Counter(ori[te[0]:te[1] + 1])
+        print('te2', te)
+        # c = Counter(ori[te[0]:te[-1] + 1])
+        # te[0], te[-1] 사이에 'b'가 몇 개 있는지 검사 필요
         for v in c.values():
             if v >= m:
                 cnt += 1
             if cnt >= 2:
                 continue
-        # to.append(te[1] - te[0] + 1)
-        to.append(''.join(ori[te[0]:te[1] + 1]))
+        to.append(te[-1] - te[0] + 1)
+        # to.append(''.join(ori[te[0]:te[-1] + 1]))
     # print('a', to)
     return to
 
@@ -49,6 +53,10 @@ for i in range(len(lo)):
         if len(di[d]) >= ko[i]:
             check(to, di[d], lo[i], ko[i])
 
-    print('to', to)
+    # print('to', to)
+    if len(to) == 0:
+        print(-1)
+        continue
+    print(min(to), max(to))
 
     di = {}
