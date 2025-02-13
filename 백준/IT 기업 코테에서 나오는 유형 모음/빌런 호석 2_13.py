@@ -27,6 +27,7 @@ for i in range(10):
             arr[i].append(d)
 
 def dfs(dep, cnt, cx):
+    # print(dep, cnt, cx)
     if dep >= len(cx):
         if int(cx) == x:
             return 0
