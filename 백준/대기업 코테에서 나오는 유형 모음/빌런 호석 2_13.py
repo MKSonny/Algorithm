@@ -1,61 +1,49 @@
 import sys
-from itertools import combinations
 
-n, k, p, x = map(int, sys.stdin.readline().split())
+input = sys.stdin.readline()
 
-di = {
-    '0': [1, 1, 1, 1, 1, 1, 0],
-    '1': [0, 1, 1, 0, 0, 0, 0],
-    '2': [1, 1, 0, 1, 1, 0, 1],
-    '3': [1, 1, 1, 1, 0, 0, 1],
-    '4': [0, 1, 1, 0, 0, 1, 1],
-    '5': [1, 0, 1, 1, 0, 1, 1],
-    '6': [1, 0, 1, 1, 1, 1, 1],
-    '7': [1, 1, 1, 0, 0, 0, 0],
-    '8': [1, 1, 1, 1, 1, 1, 1],
-    '9': [1, 1, 1, 1, 0, 1, 1],
-    }
+n, k, p, x = map(int, input.split())
 
-di2 = {
-    '[1, 1, 1, 1, 1, 1, 0]': 0,
-    '[0, 1, 1, 0, 0, 0, 0]': 1,
-    '[1, 1, 0, 1, 1, 0, 1]': 2,
-    '[1, 1, 1, 1, 0, 0, 1]': 3,
-    '[0, 1, 1, 0, 0, 1, 1]': 4,
-    '[1, 0, 1, 1, 0, 1, 1]': 5,
-    '[1, 0, 1, 1, 1, 1, 1]': 6,
-    '[1, 1, 1, 0, 0, 0, 0]': 7,
-    '[1, 1, 1, 1, 1, 1, 1]': 8,
-    '[1, 1, 1, 1, 0, 1, 1]': 9,
-    }
+if len(str(x)) < k:
+    cx = '0' * (k - len(str(x))) + str(x)
+else:
+    cx = str(x)
 
-x = list(str(x))
+num = ['1111110', '0110000', '1101101', '1111001', '0110011', '1011011',
+       '1011111', '1110000', '1111111', '1111011']
 
-def toggle(li, ori):
-    co = ori[:]
-    # print("ori", ori)
-    # print('te', di2[str(co)])
-    for i in li:
-        if co[i] == 1:
-            co[i] = 0
+arr = []
+
+for i in range(10):
+    arr.append([])
+    for j in range(10):
+        if i == j:
+            arr[i].append(0)
         else:
-            co[i] = 1
+            d = 0
+            for h in range(7):
+                if num[i][h] != num[j][h]:
+                    d += 1
+            arr[i].append(d)
 
-    # print(str(co))
+def dfs(dep, cnt, cx):
+    if dep >= len(cx):
+        if int(cx) == x:
+            return 0
+        elif 1 <= int(cx) <= n:
+            return 1
+        else:
+            return 0
 
-    if str(co) in di2.keys():
-        print(di2[str(co)])
+    rst, cur = 0, int(cx[dep])
 
-ori = ''
-for i in x:
-    ori += str(di[i])
+    for i in range(10):
+        if cur != i and (arr[cur][i] <= cnt):
+            dx = cx[:dep] + str(i) + cx[dep + 1:]
+            rst += dfs(dep + 1, cnt - arr[cur][i], dx)
+        elif cur == i:
+            rst += dfs(dep + 1, cnt, cx)
 
-print(ori)
-ch = [i for i in range(1, 8 * k + 1)]
+    return rst
 
-for p in range(1, p + 1):
-    c = combinations(ch, p)
-    for t in c:
-        print(t)
-    # for t in c:
-    #     toggle(t, ori)
+print(dfs(0, p, cx))
