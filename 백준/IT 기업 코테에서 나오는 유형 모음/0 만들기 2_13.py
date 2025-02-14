@@ -7,6 +7,3 @@ for _ in range(n):
     li.append(int(sys.stdin.readline()))
 
 print(li)
-
-def dfs(arr):
-    
