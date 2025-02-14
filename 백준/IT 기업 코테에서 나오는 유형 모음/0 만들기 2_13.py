@@ -1,21 +1,12 @@
-plus_visited = [False] * 4
+import sys
 
-# F F F F
-# T F F F
-# T T F F
-# T T T F
-# T T T T
-# F T F F
+n = int(sys.stdin.readline())
+li = []
 
+for _ in range(n):
+    li.append(int(sys.stdin.readline()))
 
-def dfs(vi, level):
-    if level == 4:
-        print(vi)
-        return
-    for i in range(4):
-        if not vi[i]:
-            vi[i] = True
-            dfs(vi, level + 1)
-            vi[i] = False
+print(li)
 
-dfs(plus_visited, 0)
+def dfs(arr):
+    
