@@ -1,5 +1,5 @@
 import sys
-sys.setrecursionlimit(100000)
+from collections import deque
 
 n, m = map(int, sys.stdin.readline().split())
 board = []
@@ -24,35 +24,39 @@ max_cnt = 0
 0 0 1 1 1
 '''
 
-def dfs(y, x):
-    global cnt
-    if 0 <= y < n and 0 <= x < m:
-        if board[y][x] == 1 and not visited[y][x]:
-            cnt += 1
-            board[y][x] = cnt
-            visited[y][x] = True
-            # max_cnt = max(max_cnt, cnt)
-            dfs(y - 1, x)
-            dfs(y + 1, x)
-            dfs(y, x - 1)
-            dfs(y, x + 1)
-    else: return
-
-total = 0
+# for i in board:
+#     print(i)
 
 max_cnt = 0
+
+def bfs(y, x):
+    global max_cnt
+
+    q = deque([(y, x)])
+    visited[y][x] = True
+    cnt = 0
+
+    while q:
+        y, x = q.popleft()
+        cnt += 1
+        for i in range(4):
+            ny = y + dy[i]
+            nx = x + dx[i]
+            if 0 <= ny < n and 0 <= nx < m:
+                if board[ny][nx] == 1 and not visited[ny][nx]:
+                    q.append((ny, nx))
+                    visited[ny][nx] = True
+
+    # print(cnt)
+    max_cnt = max(max_cnt, cnt)
+
+total = 0
 
 for i in range(n):
     for j in range(m):
         if board[i][j] == 1 and not visited[i][j]:
-            cnt = 0
-            dfs(i, j)
-            max_cnt = max(max_cnt, cnt)
+            bfs(i, j)
             total += 1
 
-# for i in board:
-#     print(i)
-
 print(total)
-if total == 0: print(0)
-else: print(max_cnt)
+print(max_cnt)
