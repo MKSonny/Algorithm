@@ -8,18 +8,23 @@ for _ in range(n):
 
 li.sort()
 
-lt = 0
-rt = n - 1
+start = 0
+end = li[-1] - li[0]
 
-while lt <= rt:
-    mid = (lt + rt) // 2
-    if li[mid] in li
+while start <= end:
+    mid = (start + end) // 2
+    current = li[0]
+    count = 1
 
-# index값은 관계없음
+    for i in range(1, n):
+        if li[i] >= current + mid:
+            count += 1
+            current = li[i]
 
+    if count >= c:
+        start = mid + 1
+        result = mid
+    else:
+        end = mid - 1
 
-# 1 3 4 1000 100000000
-# 1 ~ 100000000
-
-
-print(li)
+print(result)
