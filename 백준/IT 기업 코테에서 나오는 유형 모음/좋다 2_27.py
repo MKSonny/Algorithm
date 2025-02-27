@@ -1,30 +1,37 @@
 import sys
-from itertools import combinations
+from collections import deque
 
 n = int(sys.stdin.readline())
 
 l = list(map(int, sys.stdin.readline().split()))
+
+# l = deque(l)
+l.sort()
 answer = 0
 
-for idx in range(n):
-    t = l.pop(0)
-    c = combinations(l, 2)
-    options = set()
+for i in range(n):
+    t = l.pop(i)
 
-    for i in c:
-        options.add(i[0] + i[1])
+    lt = 0
+    rt = n - 2
+    # print(t, l)
 
-    if t in options:
-        answer += 1
+    while lt < rt:
+        if l[lt] + l[rt] < t:
+            lt += 1
+        elif l[lt] + l[rt] == t:
+            answer += 1
+            break
+        else:
+            rt -= 1
 
-    l.append(t)
+    l.insert(i, t)
 
 print(answer)
-
-
 '''
 5
 -1 0 1 2 3
+
 lt = 0
 rt = 3
 mid = 1
