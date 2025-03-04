@@ -7,11 +7,12 @@ st = []
 
 for i in s:
     st.append(i)
-    if st[len(st) - m:len(st)] == target:
+
+    if st[len(st) - m:len(st) + m] == target:
         for _ in range(m):
             st.pop()
 
 if st:
     print(*st, sep='')
 else:
-    print("FRULA")
+    print('FRULA')
