@@ -1,39 +1,49 @@
 import sys
-from collections import deque
 
 n = int(sys.stdin.readline())
 l = list(map(int, sys.stdin.readline().split()))
 
-def check_left(l, cur):
-    cnt = 0
-    idx = cur - 1
-    flag = False
+'''
+10
+1000000000 999999999 999999998 999999997 999999996 1 2 3 4 5
+'''
 
-    while idx >= 0 and l[cur] > l[idx]:
-        if l[cur] <= l[idx]:
-            flag = True
+def check_left(l, start):
+    idx = start - 1
+
+    if l[start] > l[idx]:
+        cnt = 1
+    else:
+        return 1
+
+    cur = idx
+    idx = cur - 1
+
+    while idx < n and l[idx] > l[cur]:
+        cur = idx
         idx -= 1
         cnt += 1
 
-    if not flag: return 0
-
     return cnt
 
 
-def check_right(l, cur):
-    cnt = 0
-    idx = cur + 1
-    flag = False
+def check_right(l, start):
+    idx = start + 1
 
-    while idx < n and l[cur] > l[idx]:
-        if l[cur] <= l[idx]:
-            flag = True
+    if l[start] > l[idx]:
+        cnt = 1
+    else:
+        return 1
+
+    cur = idx
+    idx = cur + 1
+
+    while idx < n and l[idx] > l[cur]:
+        cur = idx
         idx += 1
         cnt += 1
 
-    if not flag: return 0
     return cnt
 
-
-for i in range(n):
+for i in range(n - 1):
     print(i, check_left(l, i), check_right(l, i))
