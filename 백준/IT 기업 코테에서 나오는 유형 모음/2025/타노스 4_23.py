@@ -42,6 +42,7 @@ while not zero_flag or not one_flag:
     ed -= 1
 
 
+
 for i in li:
     if i == 'x': continue
     print(i, end='')
