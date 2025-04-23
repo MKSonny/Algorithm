@@ -41,5 +41,4 @@ while ed > max_index:
     li[ed] = max_ed
     ed -= 1
 
-
 print(sum(li))
