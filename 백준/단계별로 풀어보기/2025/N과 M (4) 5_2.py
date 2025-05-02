@@ -4,19 +4,16 @@ from time import sleep
 n, m = map(int, sys.stdin.readline().split())
 
 p = []
-idx = 1
-t_idx = 1
 
-def dfs(p, level, idx):
-    if level == n:
+def dfs(level):
+    if len(p) == m:
+        print(' '.join(map(str, p)))
         return
 
-    p.append(idx)
-    print(p)
-    for _ in range(level, n + 1):
-        dfs(p, level + 1, idx)
-        idx += 1
-    p.pop()
-    idx = level
+    for i in range(level, n + 1):
+        p.append(i)
+        dfs(i)
+        p.pop()
 
-dfs(p, 0, 1)
+
+dfs(1)
