@@ -1,6 +1,5 @@
 from collections import deque
 
-
 def solution(storage, requests):
     answer = 0
 
