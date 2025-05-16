@@ -4,7 +4,8 @@ maxx = -1
 def solution(land):
     answer = 0
 
-    dp = [[0 for _ in range(4)] for _ in range(len(land))]
+    dp = [[0 for _ in r
+          ange(4)] for _ in range(len(land))]
 
 
     for i in range(4):
