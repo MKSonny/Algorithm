@@ -6,6 +6,7 @@ def solution(land):
 
     dp = [[0 for _ in range(4)] for _ in range(len(land))]
 
+
     for i in range(4):
         dp[0][i] = land[0][i]
 
