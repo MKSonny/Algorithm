@@ -4,8 +4,8 @@ n = int(sys.stdin.readline())
 l = list(map(int, sys.stdin.readline().split()))
 calc = list(map(int, sys.stdin.readline().split()))
 
-maxx = -1
-minn = float("inf")
+maxx = -1000000000
+minn = 1000000000
 
 def dfs(level, total, calc):
     global maxx, minn
@@ -31,9 +31,9 @@ def dfs(level, total, calc):
             elif i == 2:
                 total *= l[level]
                 dfs(level + 1, total, calc)
-                total //= l[level]
+                total = int(total / l[level])
             elif i == 3:
-                total //= l[level]
+                total = int(total / l[level])
                 dfs(level + 1, total, calc)
                 total *= l[level]
             calc[i] += 1
