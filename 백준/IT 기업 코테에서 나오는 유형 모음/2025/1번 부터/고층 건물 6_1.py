@@ -11,29 +11,22 @@ l = list(map(int, sys.stdin.readline().split()))
    # # # # #
 '''
 
+def calc(y2, y1, x2, x1):
+    return (y2 - y1) //(x2 - x1)
+
 def check(x):
-    lt = x - 2
-    rt = x + 2
+    temp = 0
+    left_cnt = 0
 
-    left_start = l[x - 1]
-    left_cnt = 1
+    for i in range(x - 1, -1, -1):
+        prev = calc(l[x], l[i], x, i)
 
-    while lt > 0:
-        if l[lt] < left_start:
+        if prev > temp:
+            temp = prev
             left_cnt += 1
-            left_start = l[lt]
-        lt -= 1
 
-    right_start = l[x + 1]
-    right_cnt = 1
+    return left_cnt
 
-    while rt < n:
-        if l[rt] < right_start:
-            right_cnt += 1
-            right_start = l[rt]
-        rt += 1
-
-    return left_cnt + right_cnt
 
 for i in range(n):
     print(l[i], check(l[i]))
