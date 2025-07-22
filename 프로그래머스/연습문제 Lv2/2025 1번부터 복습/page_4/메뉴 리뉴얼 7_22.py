@@ -58,4 +58,5 @@ def solution(orders, course):
 
     answer.sort()
 
+
     return answer
