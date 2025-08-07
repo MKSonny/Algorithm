@@ -27,7 +27,7 @@ def p():
     for i in l:
         print(i)
 
-# p()
+p()
 
 for y1, x1, y2, x2 in t:
     a = 0
